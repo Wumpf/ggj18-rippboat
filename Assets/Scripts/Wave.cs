@@ -4,18 +4,19 @@ using UnityEngine;
 
 struct Wave
 {
-    public Vector2 OriginPosition;
+    public Vector3 OriginPosition;
     public float StartTime;
 
-    public Wave(Vector2 originPosition, float startTime)
+    public Wave(Vector3 originPosition, float startTime)
     {
-        OriginPosition = originPosition;
+        OriginPosition = new Vector3(originPosition.x, 0F, originPosition.z);
         StartTime = startTime;
     }
 
-    public float EvaluateWaveHeight(Vector2 position)
+    public float EvaluateWaveHeight(Vector3 position)
     {
-        float d = Vector2.Distance(OriginPosition, position);
+        position = new Vector3(position.x, 0F, position.z);
+        float d = Vector3.Distance(OriginPosition, position);
         float t = Time.time - StartTime;
 
         if (d > t * 2F)
@@ -25,8 +26,8 @@ struct Wave
 
     }
 
-    public Vector2 EvaluateWaveGradient(Vector2 position)
+    public Vector3 EvaluateWaveGradient(Vector3 position)
     {
-        return Vector2.zero;
+        return Vector3.zero;
     }
 }
