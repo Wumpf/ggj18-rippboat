@@ -13,11 +13,11 @@ struct Wave
         StartTime = startTime;
     }
 
-    public float EvaluateWaveHeight(Vector3 position)
+    public float EvaluateWaveHeight(Vector3 position, float time)
     {
         position = new Vector3(position.x, 0F, position.z);
         float d = Vector3.Distance(OriginPosition, position);
-        float t = Time.time - StartTime;
+        float t = time - StartTime;
 
         if (d > t * 2F)
             return 0;
@@ -26,7 +26,7 @@ struct Wave
 
     }
 
-    public Vector3 EvaluateWaveGradient(Vector3 position)
+    public Vector3 EvaluateWaveGradient(Vector3 position, float time)
     {
         return Vector3.zero;
     }
