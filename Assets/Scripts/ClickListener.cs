@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider)), RequireComponent(typeof(WaveManager))]
 public class ClickListener : MonoBehaviour
 {
-    [SerializeField]
     WaveManager WaveManager;
 
     Collider WaveCollider;
@@ -15,6 +14,7 @@ public class ClickListener : MonoBehaviour
     void Start()
     {
         WaveCollider = GetComponent<Collider>();
+        WaveManager = GetComponent<WaveManager>();
     }
 
     // Update is called once per frame

@@ -15,6 +15,7 @@ struct Wave
 
     public float EvaluateWaveHeight(Vector2 position)
     {
+
         return 0;
     }
 
