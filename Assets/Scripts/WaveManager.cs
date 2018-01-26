@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour {
 
+    List<Wave> Waves = new List<Wave>();
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,14 +15,29 @@ public class WaveManager : MonoBehaviour {
 	void Update () {
 
     }
-
+    
     public float EvaluateWaveHeight(Vector2 position)
     {
-        return 0;
+        float result = 0F;
+        foreach (Wave w in Waves)
+        {
+            result += w.EvaluateWaveHeight(position);
+        }
+        return result;
     }
 
     public Vector2 EvaluateWaveGradient(Vector2 position)
     {
-        return Vector2.zero;
+        Vector2 result = Vector2.zero;
+        foreach(Wave w in Waves)
+        {
+            result += w.EvaluateWaveGradient(position);
+        }
+        return result;
+    }
+
+    public void AddWave(Vector2 originPosition, float startTime)
+    {
+        Waves.Add(new Wave(originPosition, startTime));
     }
 }
