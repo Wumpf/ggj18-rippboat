@@ -15,8 +15,9 @@ struct Wave
 
     public float EvaluateWaveHeight(Vector2 position)
     {
-
-        return 0;
+        float d = Vector2.Distance(OriginPosition, position);
+        float t = Time.time - StartTime;
+        return t > 0 ? Mathf.Sin(t * 2F - d) / (t + 10F) * 4F : 0F;
     }
 
     public Vector2 EvaluateWaveGradient(Vector2 position)
