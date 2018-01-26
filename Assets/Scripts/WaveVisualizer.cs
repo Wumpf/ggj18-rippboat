@@ -26,5 +26,6 @@ public class WaveVisualizer : MonoBehaviour
 		}
 		mesh.vertices = vertices;
 		mesh.RecalculateBounds();
+		mesh.RecalculateNormals();
 	}
 }
