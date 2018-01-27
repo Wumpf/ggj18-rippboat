@@ -167,4 +167,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaveManager: {fileID: 0}
-  GradientScale: 0.02
+  GradientScale: 0.2

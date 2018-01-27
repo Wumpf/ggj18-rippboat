@@ -12,7 +12,7 @@ public class FloatingBehavior : MonoBehaviour {
     {
 
         var currentGradient = WaveManager.EvaluateWaveGradient(transform.position) * GradientScale;
-        Vector3 targetPosition = transform.position + new Vector3(currentGradient.x, 0, currentGradient.y);
+        Vector3 targetPosition = transform.position + new Vector3(currentGradient.x, 0, currentGradient.z);
 
         var currentHeight = WaveManager.EvaluateWaveHeight(targetPosition);
 

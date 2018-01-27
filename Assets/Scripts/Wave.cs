@@ -40,7 +40,7 @@ struct Wave
         // f(x,y) = sin(2t - sqrt(x^2 + y^2)) * 6 / (3t + 4)
         // f(x,y) / dx = -x/d * cos(2t - d) * 6 / (3t + 4) .... analogously for y
 
-        float derivativeFactor = -1F / d * Mathf.Cos(2F * t - d) * 6F / (3F * t + 4F);
+        float derivativeFactor = 1F / d * Mathf.Cos(2F * t - d) * 6F / (3F * t + 4F);
         return new Vector3(distance.x * derivativeFactor, 0F, distance.z * derivativeFactor); // fabolous function #2
     }
 }
