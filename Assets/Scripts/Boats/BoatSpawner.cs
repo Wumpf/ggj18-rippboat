@@ -17,22 +17,35 @@ public class BoatSpawner : MonoBehaviour
 	public int StartBoatsPerPlayer = 2;
 	
 	public GameObject ShipPrefab;
+	
+	
 	private WaveManager waveManager;
+	private BoxCollider spawnBox; 
 	
 	// Use this for initialization
 	void Start ()
 	{
-		StartupSpawn();
-		
 		waveManager = FindObjectOfType<WaveManager>();
+		spawnBox = GetComponent<BoxCollider>();
+		
+		StartupSpawn();
 	}
 
 	public void StartupSpawn()
 	{
+		Vector3 scaledSize = spawnBox.size;
+		scaledSize.Scale(transform.lossyScale);
+		Vector3 min = spawnBox.center + transform.position + scaledSize * 0.5f;
+		Vector3 max = spawnBox.center + transform.position - scaledSize * 0.5f;
+		
 		foreach (var player in ((Player[]) Enum.GetValues(typeof(Player))).Take(NumPlayers))
 		{
 			for (int i = 0; i < StartBoatsPerPlayer; ++i)
 			{
+				var pos = new Vector3(
+					UnityEngine.Random.Range(min.x, max.x), 0,
+					UnityEngine.Random.Range(min.z, max.z));
+				SpawnBoat(player, pos);
 			}
 		}
 	}
