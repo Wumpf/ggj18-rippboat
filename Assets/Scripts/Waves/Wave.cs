@@ -4,13 +4,15 @@ using UnityEngine;
 
 struct Wave
 {
-    public Vector3 OriginPosition;
+    Vector3 OriginPosition;
     public float StartTime;
+    public WaveSpecs Specs;
 
-    public Wave(Vector3 originPosition, float startTime)
+    public Wave(Vector3 originPosition, float startTime, WaveSpecs specs)
     {
         OriginPosition = new Vector3(originPosition.x, 0F, originPosition.z);
         StartTime = startTime;
+        Specs = specs;
     }
     
     public float EvaluateWaveHeight(Vector3 position, float time)
@@ -19,10 +21,14 @@ struct Wave
         float d = Vector3.Distance(OriginPosition, position);
         float t = time - StartTime;
 
-        if (d > t * 2F)
+        if (0F >= t * Specs.SpreadSpeed - d)
             return 0;
 
-        return Mathf.Sin(2F * t - d) * 6F / (3F * t + 4F); // fabolous function
+        float timeFactor = Mathf.Max(0F, (1 - t / Specs.MaxDuration));
+        float distanceFactor = Mathf.Max(0F, (1 - d / Specs.SpreadDistance));
+        return Mathf.Sin((Specs.SpreadSpeed * t - d) * Specs.WaveFrequency) * Specs.BaseAmplitude * timeFactor * distanceFactor; // fabolous function
+
+        //return Mathf.Sin(2F * t - d) * 6F / (3F * t + 4F); // fabolous function
     }
 
     public Vector3 EvaluateWaveGradient(Vector3 position, float time)
