@@ -28,7 +28,7 @@ struct Wave
     public Vector3 EvaluateWaveGradient(Vector3 position, float time)
     {
         Vector3 tmp;
-        return EvaluateWaveGradient(position, time);
+        return EvaluateWaveGradient(position, time, out tmp);
     }
     public Vector3 EvaluateWaveGradient(Vector3 position, float time, out Vector3 normal)
     {
