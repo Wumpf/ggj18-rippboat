@@ -25,7 +25,8 @@ public class BoatSpawner : MonoBehaviour
 	
 	
 	private WaveManager waveManager;
-	private BoxCollider spawnBox; 
+	private BoxCollider spawnBox;
+
 	
 	// Use this for initialization
 	void Start ()
