@@ -12,7 +12,8 @@ public class Boat : MonoBehaviour
 
     private Vector3 _bounceForce;
 
-    public float BounceMagnitude = 0.9f;
+    public float BounceMagnitude = 0.85f;
+    public float BounceFriction = 0.96f;
 
     // Use this for initialization
     void Start()
@@ -44,10 +45,8 @@ public class Boat : MonoBehaviour
     void FixedUpdate()
     {
         this.transform.position += _bounceForce;
-        _bounceForce *= 0.9f;
+        _bounceForce *= BounceFriction;
     }
-
-	
 
     void OnCollisionEnter(Collision collision)
     {
@@ -59,12 +58,9 @@ public class Boat : MonoBehaviour
                 GameObject.Destroy(this.gameObject);
 
             var gradient = WaveManager.EvaluateWaveGradient(transform.position);
-            float bounceFactor = Mathf.Max(0.1f, gradient.magnitude);
+            float bounceFactor = Mathf.Log(gradient.magnitude + 1.1f) * BounceMagnitude;
 
-            _bounceForce += bounceFactor * collision.contacts[0].normal * BounceMagnitude;
+            _bounceForce += collision.contacts[0].normal * bounceFactor;
         }
-
     }
-
-
 }
