@@ -72,7 +72,7 @@ public class WaveManager : MonoBehaviour {
 
     public void AddWave(Vector3 originPosition)
     {
-        AddWave(originPosition, ClickWaveSpecs));
+        AddWave(originPosition, ClickWaveSpecs);
     }
     
     public void AddWave(Vector3 originPosition, WaveSpecs customSpecs)
