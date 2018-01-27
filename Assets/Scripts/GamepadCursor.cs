@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using Assets.Scripts;
 using UnityEngine;
 
 public class GamepadCursor : MonoBehaviour
@@ -30,8 +30,8 @@ public class GamepadCursor : MonoBehaviour
 
     void FixedUpdate()
     {
-        var horizontal = Input.GetAxis(AxisFromPlayer("Horizontal", PlayerIndex));
-        var vertical = Input.GetAxis(AxisFromPlayer("Vertical", PlayerIndex));
+        var horizontal = Input.GetAxis(AxisFromPlayer("Vertical", PlayerIndex));
+        var vertical = Input.GetAxis(AxisFromPlayer("Horizontal", PlayerIndex));
 
         CursorOnSurface.position += new Vector3(horizontal * CursorSpeed, 0,vertical * CursorSpeed);
         CursorOnAir.position += new Vector3(horizontal * CursorSpeed, 0, vertical * CursorSpeed);
@@ -45,14 +45,6 @@ public class GamepadCursor : MonoBehaviour
     public static string AxisFromPlayer(string axisName, Player index)
     {
         return axisName + index.ToString().First() + index.ToString().Substring(1).ToLower();
-    }
-
-    public enum Player
-    {
-        ONE,
-        TWO,
-        THREE,
-        FOUR
     }
 
 }
