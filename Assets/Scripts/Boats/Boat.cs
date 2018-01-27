@@ -15,8 +15,7 @@ public class Boat : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-	{//transform.position = 0.
-
+	{
         Vector3 normal;
         Vector3 gradient = WaveManager.EvaluateWaveGradient(transform.position, out normal);
 
@@ -35,7 +34,7 @@ public class Boat : MonoBehaviour
 	
 	void OnCollisionEnter(Collision collision)
 	{
-		if (collision.transform.tag == "Reef")
+		if (collision.transform.tag == "Reef" || collision.gameObject.GetComponent<Boat>())
 		{
 			GameObject.Destroy(this.gameObject);
 		}
