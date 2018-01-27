@@ -16,6 +16,8 @@ public class GamepadCursor : MonoBehaviour
 
     public float CursorSpeed;
 
+    public bool Locked { get; set; }
+
     void Start()
     {
         waveManager = FindObjectOfType<WaveManager>();
@@ -23,12 +25,16 @@ public class GamepadCursor : MonoBehaviour
     
     void Update()
     {
+        if(Locked)
+            return;
+
         if (Input.GetButtonDown(AxisFromPlayer("Wave", PlayerIndex)))
             waveManager.AddWave(CursorOnSurface.position, Time.time);
     }
 
     void FixedUpdate()
     {
+
         var horizontal = Input.GetAxis(AxisFromPlayer("Horizontal", PlayerIndex));
         var vertical = Input.GetAxis(AxisFromPlayer("Vertical", PlayerIndex));
 
