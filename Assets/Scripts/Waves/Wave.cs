@@ -27,8 +27,6 @@ struct Wave
         float timeFactor = Mathf.Max(0F, (1 - t / Specs.MaxDuration));
         float distanceFactor = Mathf.Max(0F, (1 - d / Specs.SpreadDistance));
         return Mathf.Sin((Specs.SpreadSpeed * t - d) * Specs.WaveFrequency) * Specs.BaseAmplitude * timeFactor * distanceFactor; // fabolous function
-
-        //return Mathf.Sin(2F * t - d) * 6F / (3F * t + 4F); // fabolous function
     }
 
     public Vector3 EvaluateWaveGradient(Vector3 position, float time)
@@ -39,25 +37,27 @@ struct Wave
     public Vector3 EvaluateWaveGradient(Vector3 position, float time, out Vector3 normal)
     {
         position = new Vector3(position.x, 0F, position.z);
-        Vector3 distance = position - OriginPosition;
-        float d = distance.magnitude;
+        Vector3 distanceVector = position - OriginPosition;
+        float d = distanceVector.magnitude;
         float t = time - StartTime;
 
-        if (d > t * 2F)
+        if (0F >= t * Specs.SpreadSpeed - d)
         {
-            normal = Vector3.zero;
+            normal = Vector3.up;
             return Vector3.zero;
         }
         // ok, what I did here is derivating the EvaluateWaveHeight-Function
-        // f(d) = sin(2t - d) * 6 / (3t + 4), replace d with sqrt(x^2 + y^2)
-        // f(x,y) = sin(2t - sqrt(x^2 + y^2)) * 6 / (3t + 4)
-        // f(x,y) / dx = -x/d * cos(2t - d) * 6 / (3t + 4) .... analogously for y
 
-        float derivativeFactor = 1F / d * Mathf.Cos(2F * t - d) * 6F / (3F * t + 4F);
-        Vector3 gradient = new Vector3(distance.x * derivativeFactor, 0F, distance.z * derivativeFactor);// fabolous function #2
+        float timeFactor = Mathf.Max(0F, (1 - t / Specs.MaxDuration));
+        float distanceFactor = Mathf.Max(0F, (1 - d / Specs.SpreadDistance));
+
+        float alpha = (Specs.SpreadSpeed * t - d) * Specs.WaveFrequency;
+        float derivativeFactor = -timeFactor * Specs.BaseAmplitude / d * ((Specs.WaveFrequency * Mathf.Cos((alpha)) * distanceFactor) + Mathf.Sin(alpha) / Specs.SpreadDistance);
         
-        Vector3 xGradient = new Vector3(1F, -gradient.x, 0F);
-        Vector3 zGradient = new Vector3(0F, -gradient.z, 1F);
+        Vector3 gradient = new Vector3(distanceVector.x * derivativeFactor, 0F, distanceVector.z * derivativeFactor);// fabolous function #2
+        
+        Vector3 xGradient = new Vector3(1F, gradient.x, 0F);
+        Vector3 zGradient = new Vector3(0F, gradient.z, 1F);
         normal = Vector3.Cross(zGradient, xGradient).normalized;
 
         return gradient;
