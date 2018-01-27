@@ -34,11 +34,10 @@ public class GamepadCursor : MonoBehaviour
         var vertical = Input.GetAxis(AxisFromPlayer("Vertical", PlayerIndex));
 
         CursorOnSurface.position += new Vector3(horizontal * CursorSpeed, 0,vertical * CursorSpeed);
-        CursorOnAir.position += new Vector3(horizontal * CursorSpeed, 0, vertical * CursorSpeed);
-
-
         CursorOnSurface.position = new Vector3(CursorOnSurface.position.x, WaveManager.EvaluateWaveHeight(CursorOnSurface.position), CursorOnSurface.position.z);
-
+        
+        CursorOnAir.position += new Vector3(horizontal * CursorSpeed, 0, vertical * CursorSpeed);
+        CursorOnAir.rotation = Quaternion.LookRotation((Camera.main.transform.position - CursorOnAir.position).normalized, Vector3.up);
     }
 
 
