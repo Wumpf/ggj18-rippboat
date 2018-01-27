@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45073056, g: 0.498841, b: 0.5650075, a: 1}
+  m_IndirectSpecularColor: {r: 0.4507302, g: 0.49884033, b: 0.5650075, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -224,6 +224,11 @@ Prefab:
       propertyPath: WaveManager
       value: 
       objectReference: {fileID: 1225745006}
+    - target: {fileID: 114302742668969818, guid: c0342b906d802b44fb11a70d95791dcb,
+        type: 2}
+      propertyPath: MotionRange
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0342b906d802b44fb11a70d95791dcb, type: 2}
   m_IsPrefabParent: 0
@@ -487,6 +492,11 @@ Prefab:
       propertyPath: m_Name
       value: Buoy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114302742668969818, guid: c0342b906d802b44fb11a70d95791dcb,
+        type: 2}
+      propertyPath: MotionRange
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0342b906d802b44fb11a70d95791dcb, type: 2}
   m_IsPrefabParent: 0
@@ -598,6 +608,11 @@ Prefab:
     - target: {fileID: 1669074979424868, guid: c0342b906d802b44fb11a70d95791dcb, type: 2}
       propertyPath: m_Name
       value: Buoy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114302742668969818, guid: c0342b906d802b44fb11a70d95791dcb,
+        type: 2}
+      propertyPath: MotionRange
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0342b906d802b44fb11a70d95791dcb, type: 2}
@@ -949,6 +964,11 @@ Prefab:
       propertyPath: m_Name
       value: Buoy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114302742668969818, guid: c0342b906d802b44fb11a70d95791dcb,
+        type: 2}
+      propertyPath: MotionRange
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0342b906d802b44fb11a70d95791dcb, type: 2}
   m_IsPrefabParent: 0
@@ -1166,6 +1186,11 @@ Prefab:
     - target: {fileID: 1669074979424868, guid: c0342b906d802b44fb11a70d95791dcb, type: 2}
       propertyPath: m_Name
       value: Buoy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114302742668969818, guid: c0342b906d802b44fb11a70d95791dcb,
+        type: 2}
+      propertyPath: MotionRange
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0342b906d802b44fb11a70d95791dcb, type: 2}
