@@ -7,18 +7,36 @@ public class WaveManager : MonoBehaviour {
     List<Wave> Waves = new List<Wave>();
     private float time = 0.0f;
 
+    [SerializeField]
+    WaveSpecs ClickWaveSpecs;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start ()
+    {
 		
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	    time = Time.time; // Cache to use in thread.
-	}
-    
+
+    // Update is called once per frame
+    void Update()
+    {
+        time = Time.time; // Cache to use in thread.
+
+        for (int i = 0; i < Waves.Count; ++i)
+        {
+            Wave w = Waves[i];
+            if (time - w.StartTime > w.Specs.MaxDuration)
+            {
+                Waves.RemoveAt(i);
+                --i;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Waves.Clear();
+        }
+    }
+
     public float EvaluateWaveHeight(Vector3 position)
     {
         float result = 0F;
@@ -53,6 +71,6 @@ public class WaveManager : MonoBehaviour {
 
     public void AddWave(Vector3 originPosition, float startTime)
     {
-        Waves.Add(new Wave(originPosition, startTime));
+        Waves.Add(new Wave(originPosition, startTime, ClickWaveSpecs));
     }
 }

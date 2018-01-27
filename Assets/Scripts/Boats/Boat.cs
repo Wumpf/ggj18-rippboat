@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
@@ -12,7 +13,10 @@ public class Boat : MonoBehaviour
 
     private Vector3 _bounceForce;
 
-    public float BounceMagnitude = 0.9f;
+    public float BounceMagnitude = 0.85f;
+    public float BounceFriction = 0.96f;
+
+    private bool dead = false;
 
     // Use this for initialization
     void Start()
@@ -25,6 +29,9 @@ public class Boat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dead)
+            return;
+        
         //transform.position = 0.
 
         Vector3 normal;
@@ -44,27 +51,42 @@ public class Boat : MonoBehaviour
     void FixedUpdate()
     {
         this.transform.position += _bounceForce;
-        _bounceForce *= 0.9f;
+        _bounceForce *= BounceFriction;
     }
-
-	
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Reef" || collision.gameObject.GetComponent<Boat>())
         {
             _health.AddDamage(1);
-
             if (_health.HP <= 0)
-                GameObject.Destroy(this.gameObject);
+            {
+                StartCoroutine(Sink());
+                return;
+            }
 
             var gradient = WaveManager.EvaluateWaveGradient(transform.position);
-            float bounceFactor = Mathf.Max(0.1f, gradient.magnitude);
+            float bounceFactor = Mathf.Log(gradient.magnitude + 1.1f) * BounceMagnitude;
 
-            _bounceForce += bounceFactor * collision.contacts[0].normal * BounceMagnitude;
+            _bounceForce += collision.contacts[0].normal * bounceFactor;
         }
-
     }
 
+    IEnumerator Sink()
+    {
+        // make this guy unusable :)
+        foreach (var col in GetComponents<Collider>())
+            col.enabled = false;
+        foreach (var col in GetComponents<FloatingBehavior>())
+            col.enabled = false;
+        dead = true;
 
+        while (transform.position.y > -5.0f)
+        {
+            transform.position = transform.position - new Vector3(0.0f, Time.deltaTime * 2.0f, 0.0f);
+            yield return null;
+        }
+        
+        Destroy(this);
+    }
 }
