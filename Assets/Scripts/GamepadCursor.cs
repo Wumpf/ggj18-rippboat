@@ -18,6 +18,9 @@ public class GamepadCursor : MonoBehaviour
 
     public bool Locked { get; set; }
 
+    private const float WaveCoolDownTime = 1.0f;
+    private float timeSinceLastWave = WaveCoolDownTime;
+    
     void Start()
     {
         waveManager = FindObjectOfType<WaveManager>();
@@ -28,8 +31,14 @@ public class GamepadCursor : MonoBehaviour
         if(Locked)
             return;
 
-        if (Input.GetButtonDown(AxisFromPlayer("Wave", PlayerIndex)))
+        timeSinceLastWave += Time.deltaTime;
+        if (timeSinceLastWave > WaveCoolDownTime && Input.GetButtonDown(AxisFromPlayer("Wave", PlayerIndex)))
+        {
             waveManager.AddWave(CursorOnSurface.position);
+            timeSinceLastWave = 0.0f;
+        }
+
+        CursorOnSurface.gameObject.active = timeSinceLastWave > WaveCoolDownTime;
     }
 
     void FixedUpdate()
