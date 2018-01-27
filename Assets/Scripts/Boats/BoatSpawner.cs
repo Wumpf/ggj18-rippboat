@@ -27,6 +27,8 @@ public class BoatSpawner : MonoBehaviour
 	private WaveManager waveManager;
 	private BoxCollider spawnBox;
 
+
+    public GameObject [] PlayerBoatParents;
 	
 	// Use this for initialization
 	void Start ()
@@ -34,7 +36,7 @@ public class BoatSpawner : MonoBehaviour
 		waveManager = FindObjectOfType<WaveManager>();
 		spawnBox = GetComponent<BoxCollider>();
 		
-		StartupSpawn();
+		//StartupSpawn();
 	}
 
 	public void StartupSpawn()
@@ -46,17 +48,20 @@ public class BoatSpawner : MonoBehaviour
 		
 		foreach (var player in ((Player[]) Enum.GetValues(typeof(Player))).Take(NumPlayers))
 		{
-			for (int i = 0; i < StartBoatsPerPlayer; ++i)
+		    for (int i = 0; i < StartBoatsPerPlayer; ++i)
 			{
 				var pos = new Vector3(
 					UnityEngine.Random.Range(min.x, max.x), 0,
 					UnityEngine.Random.Range(min.z, max.z));
-				SpawnBoat(player, pos);
+				var boat = SpawnBoat(player, pos);
+
+			    boat.transform.parent = PlayerBoatParents[(int)player].transform;
 			}
+
 		}
 	}
 
-	public void SpawnBoat(Player player, Vector3 position)
+	public GameObject SpawnBoat(Player player, Vector3 position)
 	{			
 		var obj = GameObject.Instantiate(BoatLogic, position, Quaternion.identity);
 		obj.GetComponent<FloatingBehavior>().WaveManager = waveManager;
@@ -80,5 +85,7 @@ public class BoatSpawner : MonoBehaviour
 			default:
 				throw new ArgumentOutOfRangeException(nameof(player), player, null);
 		}
+
+	    return obj;
 	}
 }
