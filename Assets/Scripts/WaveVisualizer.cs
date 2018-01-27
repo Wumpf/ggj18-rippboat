@@ -59,12 +59,13 @@ public class WaveVisualizer : MonoBehaviour
 	void Update ()
 	{
 		Vector3[] vertices = mesh.vertices;
+		Vector3 scale = transform.localScale; // nobody plans on scaling the parent!!!
 
 		System.Threading.Tasks.Parallel.For(0, vertices.Length, i =>
 		{
 			var oldVertex = vertices[i];
-			float newHeight = waveManager.EvaluateWaveHeight(new Vector3(oldVertex.x, 0F, oldVertex.z)); // new hate.
-			vertices[i] = new Vector3(oldVertex.x, newHeight, oldVertex.z);
+			float newHeight = waveManager.EvaluateWaveHeight(new Vector3(oldVertex.x * scale.x, 0F, oldVertex.z * scale.z)); // new hate.
+			vertices[i] = new Vector3(oldVertex.x, newHeight / scale.y, oldVertex.z);
 		});
 		mesh.vertices = vertices;
 		//mesh.RecalculateBounds();

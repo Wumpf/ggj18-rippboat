@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4507302, g: 0.49884033, b: 0.5650075, a: 1}
+  m_IndirectSpecularColor: {r: 0.45073056, g: 0.498841, b: 0.5650075, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -315,6 +315,10 @@ Prefab:
       propertyPath: m_Name
       value: PlayerCursor_Three
       objectReference: {fileID: 0}
+    - target: {fileID: 1287640635357686, guid: e178a7b7e81a4a54a8a31df31d2287f8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e178a7b7e81a4a54a8a31df31d2287f8, type: 2}
   m_IsPrefabParent: 0
@@ -395,7 +399,7 @@ GameObject:
   - component: {fileID: 1225745008}
   - component: {fileID: 1225745007}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Wavestuff
   m_TagString: Ocean
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,7 +468,7 @@ Transform:
   m_GameObject: {fileID: 1225745001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
