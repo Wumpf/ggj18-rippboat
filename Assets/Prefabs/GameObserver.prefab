@@ -130,6 +130,9 @@ MonoBehaviour:
   BoatTWO: {fileID: 1633399449865472, guid: fc353266468d9474f9525080c1dd3ee0, type: 2}
   BoatTHREE: {fileID: 1953627324270140, guid: 47c42e664b6984f009688ed2d471ef37, type: 2}
   BoatFOUR: {fileID: 1085358368101816, guid: 8bac21909d6894bf1892227ef3e7e7aa, type: 2}
+  PlayerBoatParents:
+  - {fileID: 1052241272113626}
+  - {fileID: 1634083285220796}
 --- !u!114 &114993170468423620
 MonoBehaviour:
   m_ObjectHideFlags: 1

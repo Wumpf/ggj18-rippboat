@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,9 @@ public class GameObserver : MonoBehaviour
     public GamepadCursor[] Cursor;
 
     private BoatSpawner _boatSpawner;
+
+    private Boat[] playerOneBoats;
+    private Boat[] playerTwoBoats;
 
 	// Use this for initialization
 	void Start ()
@@ -29,11 +34,14 @@ public class GameObserver : MonoBehaviour
 	    if (Input.GetKeyDown(KeyCode.R))
 	        StartCoroutine(StartGame());
 
-	    if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
+	    var numPlayerOneBoats = playerOneBoats.Count(t=> t.IsDead == false);
+	    var numPlayerTwoBoats = playerTwoBoats.Count(t => t.IsDead == false);
+
+        if (numPlayerOneBoats == 0)
 	    {
-	        Debug.Log("Player 1 wins");
+	        Debug.Log("Player 2 wins");
 	        StartCoroutine(StartGame());
-        }else if (_boatSpawner.PlayerBoatParents[1].transform.childCount == 0)
+        }else if (numPlayerTwoBoats == 0)
 	    {
 	        Debug.Log("Player 1 wins");
 	        StartCoroutine(StartGame());
@@ -43,11 +51,16 @@ public class GameObserver : MonoBehaviour
 
     public void KillOldBoats()
     {
-        while(_boatSpawner.PlayerBoatParents[0].transform.childCount>0)
-            GameObject.Destroy(_boatSpawner.PlayerBoatParents[0].transform.GetChild(0));
+        foreach (Transform child in _boatSpawner.PlayerBoatParents[0].transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
 
-        while (_boatSpawner.PlayerBoatParents[1].transform.childCount > 0)
-            GameObject.Destroy(_boatSpawner.PlayerBoatParents[0].transform.GetChild(0));
+        foreach (Transform child in _boatSpawner.PlayerBoatParents[1].transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
     }
 
     IEnumerator StartGame()
@@ -55,6 +68,9 @@ public class GameObserver : MonoBehaviour
 
         KillOldBoats();
         _boatSpawner.StartupSpawn();
+
+        playerOneBoats = _boatSpawner.PlayerBoatParents[0].GetComponentsInChildren<Boat>();
+        playerTwoBoats = _boatSpawner.PlayerBoatParents[1].GetComponentsInChildren<Boat>();
 
         foreach (var playerCursor in Cursor)
             playerCursor.Locked = true;

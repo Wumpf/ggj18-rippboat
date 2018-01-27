@@ -660,11 +660,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1071353574}
   m_Script: {fileID: 11500000, guid: e7d92ad70cdf6254cafeab85c0984b25, type: 3}
---- !u!1 &996243663 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1052241272113626, guid: cb8864cfc1a56b1478e829d23dfac7b3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1547187448}
 --- !u!1001 &1029243540
 Prefab:
   m_ObjectHideFlags: 0
@@ -1083,11 +1078,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114240312241884616, guid: cb8864cfc1a56b1478e829d23dfac7b3,
-        type: 2}
-      propertyPath: PlayerBoatParents.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4134840792655228, guid: cb8864cfc1a56b1478e829d23dfac7b3, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.27
@@ -1135,16 +1125,6 @@ Prefab:
       propertyPath: Cursor.Array.data[1]
       value: 
       objectReference: {fileID: 990169940}
-    - target: {fileID: 114240312241884616, guid: cb8864cfc1a56b1478e829d23dfac7b3,
-        type: 2}
-      propertyPath: PlayerBoatParents.Array.data[0]
-      value: 
-      objectReference: {fileID: 996243663}
-    - target: {fileID: 114240312241884616, guid: cb8864cfc1a56b1478e829d23dfac7b3,
-        type: 2}
-      propertyPath: PlayerBoatParents.Array.data[1]
-      value: 
-      objectReference: {fileID: 1806327314}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb8864cfc1a56b1478e829d23dfac7b3, type: 2}
   m_IsPrefabParent: 0
@@ -1426,11 +1406,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1806327314 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1634083285220796, guid: cb8864cfc1a56b1478e829d23dfac7b3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1547187448}
 --- !u!1 &1819802433
 GameObject:
   m_ObjectHideFlags: 0

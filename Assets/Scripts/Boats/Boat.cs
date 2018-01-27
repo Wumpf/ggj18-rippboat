@@ -18,7 +18,7 @@ public class Boat : MonoBehaviour
     public float BounceMagnitude = 0.6f;
     public float BounceFriction = 0.96f;
 
-    private bool dead = false;
+    public bool IsDead { get; private set; }
 
     // Use this for initialization
     void Start()
@@ -31,7 +31,7 @@ public class Boat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dead)
+        if (IsDead)
             return;
         
         //transform.position = 0.
@@ -81,7 +81,7 @@ public class Boat : MonoBehaviour
             col.enabled = false;
         foreach (var col in GetComponents<FloatingBehavior>())
             col.enabled = false;
-        dead = true;
+        IsDead = true;
 
         WaveManager.AddWave(transform.position, new WaveSpecs()
         {
