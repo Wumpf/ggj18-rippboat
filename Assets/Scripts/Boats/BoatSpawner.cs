@@ -64,7 +64,6 @@ public class BoatSpawner : MonoBehaviour
 	public GameObject SpawnBoat(Player player, Vector3 position)
 	{			
 		var obj = GameObject.Instantiate(BoatLogic, position, Quaternion.identity);
-		obj.GetComponent<FloatingBehavior>().WaveManager = waveManager;
 		obj.GetComponent<Boat>().Owner = player;
 		obj.transform.Rotate(0, Random.Range(0.0f, 360.0f), 0);
 		
