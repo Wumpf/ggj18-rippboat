@@ -11,9 +11,11 @@ public class Boat : MonoBehaviour
     public Player Owner = Player.ONE;
     private Health _health;
 
+    public GameObject SplashEffect;
+
     private Vector3 _bounceForce;
 
-    public float BounceMagnitude = 0.85f;
+    public float BounceMagnitude = 0.6f;
     public float BounceFriction = 0.96f;
 
     private bool dead = false;
@@ -80,6 +82,8 @@ public class Boat : MonoBehaviour
         foreach (var col in GetComponents<FloatingBehavior>())
             col.enabled = false;
         dead = true;
+
+        Instantiate(SplashEffect, transform.position, Quaternion.identity);
 
         while (transform.position.y > -5.0f)
         {

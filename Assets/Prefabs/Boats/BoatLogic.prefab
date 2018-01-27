@@ -296,7 +296,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Owner: 0
+  SplashEffect: {fileID: 1041510337897534, guid: 6a2e2a76b2f744e6e9eff8c927e4188d,
+    type: 2}
   BounceMagnitude: 0.5
+  BounceFriction: 0.94
 --- !u!114 &114673576775653128
 MonoBehaviour:
   m_ObjectHideFlags: 1
