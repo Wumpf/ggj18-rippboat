@@ -5,8 +5,7 @@ using UnityEngine;
 public class Boat : MonoBehaviour
 {
 
-	public WaveManager WaveManager;
-	
+
 	// Use this for initialization
 	void Start () {
 		
@@ -14,13 +13,19 @@ public class Boat : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
+	{//transform.position = 0.
+
+
+
+	}
+
+	
+	void OnCollisionEnter(Collision collision)
 	{
-		var current2DPosition = new Vector2(transform.position.x, transform.position.z);
-		
-		var currentHeight = WaveManager.EvaluateWaveHeight(current2DPosition);
-		var currentGradient = WaveManager.EvaluateWaveGradient(current2DPosition);
-		
-		transform.position = new Vector3(transform.position.x, currentHeight, transform.position.z);
-		
+		if (collision.transform.tag != "Ocean")
+		{
+			GameObject.Destroy(this.gameObject);
+		}
+
 	}
 }
