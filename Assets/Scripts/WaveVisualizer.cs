@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 [RequireComponent(typeof(Mesh))]
@@ -58,12 +59,13 @@ public class WaveVisualizer : MonoBehaviour
 	void Update ()
 	{
 		Vector3[] vertices = mesh.vertices;
-		for(int i=0; i < vertices.Length; ++i)
+
+		System.Threading.Tasks.Parallel.For(0, vertices.Length, i =>
 		{
 			var oldVertex = vertices[i];
 			float newHeight = waveManager.EvaluateWaveHeight(new Vector2(oldVertex.x, oldVertex.z)); // new hate.
 			vertices[i] = new Vector3(oldVertex.x, newHeight, oldVertex.z);
-		}
+		});
 		mesh.vertices = vertices;
 		//mesh.RecalculateBounds();
 		mesh.RecalculateNormals();

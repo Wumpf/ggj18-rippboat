@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour {
 
     List<Wave> Waves = new List<Wave>();
+    private float time = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -12,16 +13,17 @@ public class WaveManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
-    }
+	void Update ()
+	{
+	    time = Time.time; // Cache to use in thread.
+	}
     
     public float EvaluateWaveHeight(Vector2 position)
     {
         float result = 0F;
         foreach (Wave w in Waves)
         {
-            result += w.EvaluateWaveHeight(position);
+            result += w.EvaluateWaveHeight(position, time);
         }
         return result;
     }
@@ -31,7 +33,7 @@ public class WaveManager : MonoBehaviour {
         Vector2 result = Vector2.zero;
         foreach(Wave w in Waves)
         {
-            result += w.EvaluateWaveGradient(position);
+            result += w.EvaluateWaveGradient(position, time);
         }
         return result;
     }
