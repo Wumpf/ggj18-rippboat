@@ -27,20 +27,33 @@ struct Wave
 
     public Vector3 EvaluateWaveGradient(Vector3 position, float time)
     {
+        Vector3 tmp;
+        return EvaluateWaveGradient(position, time);
+    }
+    public Vector3 EvaluateWaveGradient(Vector3 position, float time, out Vector3 normal)
+    {
         position = new Vector3(position.x, 0F, position.z);
         Vector3 distance = position - OriginPosition;
         float d = distance.magnitude;
         float t = time - StartTime;
 
         if (d > t * 2F)
+        {
+            normal = Vector3.zero;
             return Vector3.zero;
-
+        }
         // ok, what I did here is derivating the EvaluateWaveHeight-Function
         // f(d) = sin(2t - d) * 6 / (3t + 4), replace d with sqrt(x^2 + y^2)
         // f(x,y) = sin(2t - sqrt(x^2 + y^2)) * 6 / (3t + 4)
         // f(x,y) / dx = -x/d * cos(2t - d) * 6 / (3t + 4) .... analogously for y
 
         float derivativeFactor = 1F / d * Mathf.Cos(2F * t - d) * 6F / (3F * t + 4F);
-        return new Vector3(distance.x * derivativeFactor, 0F, distance.z * derivativeFactor); // fabolous function #2
+        Vector3 gradient = new Vector3(distance.x * derivativeFactor, 0F, distance.z * derivativeFactor);// fabolous function #2
+        
+        Vector3 xGradient = new Vector3(1F, -gradient.x, 0F);
+        Vector3 zGradient = new Vector3(0F, -gradient.z, 1F);
+        normal = Vector3.Cross(zGradient, xGradient).normalized;
+
+        return gradient;
     }
 }

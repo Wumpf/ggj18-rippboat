@@ -167,4 +167,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaveManager: {fileID: 0}
-  GradientScale: 0.2
+  GradientScale: 0.1
+  InertiaFactor: 0.96

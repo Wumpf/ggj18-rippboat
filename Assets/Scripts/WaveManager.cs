@@ -7,6 +7,7 @@ public class WaveManager : MonoBehaviour {
     List<Wave> Waves = new List<Wave>();
     private float time = 0.0f;
 
+
 	// Use this for initialization
 	void Start () {
 		
@@ -30,12 +31,24 @@ public class WaveManager : MonoBehaviour {
 
     public Vector3 EvaluateWaveGradient(Vector3 position)
     {
-        Vector3 result = Vector3.zero;
+        Vector3 tmp;
+        return EvaluateWaveGradient(position, out tmp);
+    }
+
+    public Vector3 EvaluateWaveGradient(Vector3 position, out Vector3 normal)
+    {
+        Vector3 gradient = Vector3.zero;
         foreach(Wave w in Waves)
         {
-            result += w.EvaluateWaveGradient(position, time);
+            gradient += w.EvaluateWaveGradient(position, time);
         }
-        return result;
+
+        Vector3 xGradient = new Vector3(1F, -gradient.x, 0F);
+        Vector3 zGradient = new Vector3(0F, -gradient.z, 1F);
+
+        normal = Vector3.Cross(zGradient, xGradient).normalized;
+
+        return gradient;
     }
 
     public void AddWave(Vector3 originPosition, float startTime)

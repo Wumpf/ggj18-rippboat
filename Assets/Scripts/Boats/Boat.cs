@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Boat : MonoBehaviour
 {
+    WaveManager WaveManager;
 
-
-	// Use this for initialization
-	void Start () {
-		
+    // Use this for initialization
+    void Start () {
+        WaveManager = FindObjectOfType<WaveManager>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{//transform.position = 0.
 
-
-
+        Vector3 normal;
+        WaveManager.EvaluateWaveGradient(transform.position, out normal);
+        transform.up = normal;
 	}
 
 	
