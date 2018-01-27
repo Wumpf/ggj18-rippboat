@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
 using System.Linq;
+using Random = UnityEngine.Random;
 
 // The thing that spawns boats on startup.
 // Everybody who wants to spawns boats should use the SpawnBoat func!
@@ -59,7 +60,8 @@ public class BoatSpawner : MonoBehaviour
 		var obj = GameObject.Instantiate(BoatLogic, position, Quaternion.identity);
 		obj.GetComponent<FloatingBehavior>().WaveManager = waveManager;
 		obj.GetComponent<Boat>().Owner = player;
-
+		obj.transform.Rotate(0, Random.Range(0.0f, 360.0f), 0);
+		
 		switch (player)
 		{
 			case Player.ONE:
@@ -77,6 +79,5 @@ public class BoatSpawner : MonoBehaviour
 			default:
 				throw new ArgumentOutOfRangeException(nameof(player), player, null);
 		}
-		
 	}
 }
