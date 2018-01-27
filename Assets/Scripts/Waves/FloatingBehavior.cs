@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class FloatingBehavior : MonoBehaviour {
 
-    public WaveManager WaveManager;
+    private WaveManager WaveManager;
 
     Vector3 velocity = Vector3.zero;
 
     public float GradientScale = 0.02f;
     [Range(0F, 1F)]
     public float InertiaFactor = 0.2f;
+
+    private void Start()
+    {
+        WaveManager = FindObjectOfType<WaveManager>();
+    }
 
     void FixedUpdate()
     {
