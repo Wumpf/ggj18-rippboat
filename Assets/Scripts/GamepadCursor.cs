@@ -12,20 +12,19 @@ public class GamepadCursor : MonoBehaviour
     public Transform CursorOnSurface;
     public Transform CursorOnAir;
 
-    public WaveManager WaveManager;
+    private WaveManager waveManager;
 
     public float CursorSpeed;
 
-    public bool MakeWave { get; private set; }
-
-
+    void Start()
+    {
+        waveManager = FindObjectOfType<WaveManager>();
+    }
+    
     void Update()
     {
-        MakeWave = false;
-
         if (Input.GetButtonDown(AxisFromPlayer("Wave", PlayerIndex)))
-            MakeWave = true;
-            
+            waveManager.AddWave(CursorOnSurface.position, Time.time);
     }
 
     void FixedUpdate()
@@ -34,10 +33,10 @@ public class GamepadCursor : MonoBehaviour
         var vertical = Input.GetAxis(AxisFromPlayer("Vertical", PlayerIndex));
 
         CursorOnSurface.position += new Vector3(horizontal * CursorSpeed, 0,vertical * CursorSpeed);
-        CursorOnSurface.position = new Vector3(CursorOnSurface.position.x, WaveManager.EvaluateWaveHeight(CursorOnSurface.position), CursorOnSurface.position.z);
+        CursorOnSurface.position = new Vector3(CursorOnSurface.position.x, waveManager.EvaluateWaveHeight(CursorOnSurface.position), CursorOnSurface.position.z);
         
         CursorOnAir.position += new Vector3(horizontal * CursorSpeed, 0, vertical * CursorSpeed);
-        CursorOnAir.rotation = Quaternion.LookRotation((Camera.main.transform.position - CursorOnAir.position).normalized, Vector3.up);
+        CursorOnAir.rotation = Quaternion.LookRotation(-(Camera.main.transform.position - CursorOnAir.position).normalized, Vector3.up);
     }
 
 
