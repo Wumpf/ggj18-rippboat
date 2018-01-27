@@ -24,15 +24,18 @@ public class WaveVisualizer : MonoBehaviour
 	void ReGenerateMesh()
 	{
 		Vector3[] vertices = new Vector3[MeshResolution * MeshResolution];
+		Vector2[] texcoords = new Vector2[MeshResolution * MeshResolution];
 		
 		for (int y = 0; y < MeshResolution; ++y)
 		{
 			for (int x = 0; x < MeshResolution; ++x)
 			{
-				vertices[x + y * MeshResolution] = new Vector3(
+				int index = x + y * MeshResolution;
+				vertices[index] = new Vector3(
 					(float) x / (MeshResolution - 1) * PlaneSize - PlaneSize * 0.5f,
 					0.0f,
 					(float) y / (MeshResolution - 1) * PlaneSize - PlaneSize * 0.5f);
+				texcoords[index] = new Vector3(vertices[index].x, vertices[index].z);
 			}
 		}
 		
@@ -54,6 +57,7 @@ public class WaveVisualizer : MonoBehaviour
 
 		mesh.vertices = vertices;
 		mesh.triangles = indices;
+		mesh.uv = texcoords;
 	}
 
 	void Update ()
@@ -70,5 +74,6 @@ public class WaveVisualizer : MonoBehaviour
 		mesh.vertices = vertices;
 		//mesh.RecalculateBounds();
 		mesh.RecalculateNormals();
+		mesh.RecalculateTangents();
 	}
 }
