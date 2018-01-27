@@ -7,8 +7,8 @@ public class Boat : MonoBehaviour
 
 	public WaveManager WaveManager;
 
-	public float GradientScale;
-	
+	public float GradientScale = 0.02f;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,18 +16,28 @@ public class Boat : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-	{
-		var current2DPosition = new Vector2(transform.position.x, transform.position.z);
-		
-		var currentHeight = WaveManager.EvaluateWaveHeight(current2DPosition);
-		var currentGradient = WaveManager.EvaluateWaveGradient(current2DPosition)*GradientScale;
-		
-		transform.position += new Vector3(currentGradient.x, 0, currentGradient.y);
-		
-		transform.position = new Vector3(transform.position.x, currentHeight, transform.position.z);
-		
-		
+	{//transform.position = 0.
+
+
+
 	}
+
+    void FixedUpdate()
+    {
+
+        var currentGradient = WaveManager.EvaluateWaveGradient(transform.position) * GradientScale;
+        Vector3 targetPosition = transform.position + new Vector3(currentGradient.x, 0, currentGradient.y);
+
+        var currentHeight = WaveManager.EvaluateWaveHeight(targetPosition);
+
+        targetPosition = new Vector3(targetPosition.x, currentHeight, targetPosition.z);
+
+        transform.position = transform.position * 0.5f + targetPosition * 0.5f;
+
+
+        transform.position = new Vector3(transform.position.x, Mathf.Max(currentHeight,transform.position.y), transform.position.z); //Ugly Code for Cord
+        
+    }
 	
 	void OnCollisionEnter(Collision collision)
 	{

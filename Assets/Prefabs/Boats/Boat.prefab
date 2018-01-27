@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33083248625039618}
   - component: {fileID: 23710179448530304}
   - component: {fileID: 95489337462883708}
-  - component: {fileID: 114405495436103388}
   m_Layer: 0
   m_Name: black_perl
   m_TagString: Untagged
@@ -38,6 +37,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4964949574595718}
+  - component: {fileID: 65760910588334788}
+  - component: {fileID: 114092627976573558}
   m_Layer: 0
   m_Name: Boat
   m_TagString: Untagged
@@ -53,7 +54,7 @@ Transform:
   m_GameObject: {fileID: 1064106292619648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.0005, y: 0.0005, z: 0.0005}
   m_Children: []
   m_Father: {fileID: 4964949574595718}
   m_RootOrder: 0
@@ -113,6 +114,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1064106292619648}
   m_Mesh: {fileID: 4300000, guid: 2425a87628df6b14db6676e5fc92466d, type: 3}
+--- !u!65 &65760910588334788
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1366627786195630}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.7, z: 0.5}
+  m_Center: {x: -0.03, y: 0.36, z: 0}
 --- !u!95 &95489337462883708
 Animator:
   serializedVersion: 3
@@ -130,15 +143,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114405495436103388
+--- !u!114 &114092627976573558
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1064106292619648}
+  m_GameObject: {fileID: 1366627786195630}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69d78bd6761a33448ac12a3b9b476088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WaveManager: {fileID: 0}
+  GradientScale: 0.02
+  MOOB: {x: 0, y: 0, z: 0}
