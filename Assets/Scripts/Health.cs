@@ -39,6 +39,6 @@ public class Health : MonoBehaviour
         transform.LookAt(Camera.main.transform);
         var targetRoation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
 
-        transform.localRotation = Quaternion.Lerp(initialRotation, targetRoation, 0.1f);
+        transform.localRotation = Quaternion.Slerp(initialRotation, targetRoation, 0.05f);
     }
 }

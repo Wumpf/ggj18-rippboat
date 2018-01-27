@@ -296,6 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Owner: 0
+  BounceMagnitude: 0.5
 --- !u!114 &114673576775653128
 MonoBehaviour:
   m_ObjectHideFlags: 1
