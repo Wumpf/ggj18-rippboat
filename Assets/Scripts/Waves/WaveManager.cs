@@ -70,14 +70,14 @@ public class WaveManager : MonoBehaviour {
         return gradient;
     }
 
-    public void AddWave(Vector3 originPosition, float startTime)
+    public void AddWave(Vector3 originPosition)
     {
-        AddWave(originPosition, startTime, ClickWaveSpecs);
+        AddWave(originPosition, ClickWaveSpecs));
     }
-
-    public void AddWave(Vector3 originPosition, float startTime, WaveSpecs specs)
+    
+    public void AddWave(Vector3 originPosition, WaveSpecs customSpecs)
     {
-        Waves.Add(new Wave(originPosition, startTime, specs));
+        Waves.Add(new Wave(originPosition, Time.time, customSpecs));
     }
 
     private void OnDrawGizmos()

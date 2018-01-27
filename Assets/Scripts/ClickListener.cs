@@ -25,7 +25,7 @@ public class ClickListener : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo) && hitInfo.collider == WaveCollider)
         {
-            WaveManager.AddWave(hitInfo.point, Time.time);
+            WaveManager.AddWave(hitInfo.point);
         }
     }
 

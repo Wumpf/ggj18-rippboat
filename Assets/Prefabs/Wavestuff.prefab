@@ -113,10 +113,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClickWaveSpecs:
     SpreadSpeed: 3.4
-    BaseAmplitude: 1.1
-    SpreadDistance: 14.6
+    BaseAmplitude: 0.5
+    SpreadDistance: 13
     WaveFrequency: 1.1
-    MaxDuration: 10.37
+    MaxDuration: 9
 --- !u!114 &114176958896859294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,11 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a1bea425d14454c84a3a358e889383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cursors:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &114740826193653692
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -16,6 +16,11 @@ public class GamepadCursor : MonoBehaviour
 
     public float CursorSpeed;
 
+    public bool Locked { get; set; }
+
+    private const float WaveCoolDownTime = 1.0f;
+    private float timeSinceLastWave = WaveCoolDownTime;
+    
     void Start()
     {
         waveManager = FindObjectOfType<WaveManager>();
@@ -23,12 +28,22 @@ public class GamepadCursor : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetButtonDown(AxisFromPlayer("Wave", PlayerIndex)))
-            waveManager.AddWave(CursorOnSurface.position, Time.time);
+        if(Locked)
+            return;
+
+        timeSinceLastWave += Time.deltaTime;
+        if (timeSinceLastWave > WaveCoolDownTime && Input.GetButtonDown(AxisFromPlayer("Wave", PlayerIndex)))
+        {
+            waveManager.AddWave(CursorOnSurface.position);
+            timeSinceLastWave = 0.0f;
+        }
+
+        CursorOnSurface.gameObject.active = timeSinceLastWave > WaveCoolDownTime;
     }
 
     void FixedUpdate()
     {
+
         var horizontal = Input.GetAxis(AxisFromPlayer("Horizontal", PlayerIndex));
         var vertical = Input.GetAxis(AxisFromPlayer("Vertical", PlayerIndex));
 

@@ -11,12 +11,14 @@ public class Boat : MonoBehaviour
     public Player Owner = Player.ONE;
     private Health _health;
 
+    public GameObject SplashEffect;
+
     private Vector3 _bounceForce;
 
-    public float BounceMagnitude = 0.85f;
-    public float BounceFriction = 0.96f;
+    public float BounceMagnitude = 0.5f;
+    public float BounceFriction = 0.99f;
 
-    private bool dead = false;
+    public bool IsDead { get; private set; }
 
     // Use this for initialization
     void Start()
@@ -29,7 +31,7 @@ public class Boat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dead)
+        if (IsDead)
             return;
         
         //transform.position = 0.
@@ -66,7 +68,7 @@ public class Boat : MonoBehaviour
             }
 
             var gradient = WaveManager.EvaluateWaveGradient(transform.position);
-            float bounceFactor = Mathf.Log(gradient.magnitude + 1.1f) * BounceMagnitude;
+            float bounceFactor = Mathf.Log10(gradient.magnitude + 1.1f) * BounceMagnitude;
 
             _bounceForce += collision.contacts[0].normal * bounceFactor;
         }
@@ -79,7 +81,17 @@ public class Boat : MonoBehaviour
             col.enabled = false;
         foreach (var col in GetComponents<FloatingBehavior>())
             col.enabled = false;
-        dead = true;
+        IsDead = true;
+
+        WaveManager.AddWave(transform.position, new WaveSpecs()
+        {
+            SpreadSpeed = 3.4f,
+            BaseAmplitude = 0.3f,
+            MaxDuration = 4.0f,
+            SpreadDistance = 3.0f,
+            WaveFrequency = 2.0f
+        } );
+        Instantiate(SplashEffect, transform.position, Quaternion.identity);
 
         while (transform.position.y > -5.0f)
         {

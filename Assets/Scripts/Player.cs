@@ -2,9 +2,9 @@
 {
     public enum Player
     {
-        ONE,
-        TWO,
-        THREE,
-        FOUR
+        ONE = 0,
+        TWO = 1,
+        THREE = 2,
+        FOUR = 3
     }
 }
