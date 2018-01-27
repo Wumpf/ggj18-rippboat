@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45134586, g: 0.5009424, b: 0.57290703, a: 1}
+  m_IndirectSpecularColor: {r: 0.45134586, g: 0.5009426, b: 0.572907, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -121,12 +121,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1225745005}
-  - component: {fileID: 1225745004}
   - component: {fileID: 1225745003}
   - component: {fileID: 1225745002}
   - component: {fileID: 1225745006}
   - component: {fileID: 1225745007}
   - component: {fileID: 1225745008}
+  - component: {fileID: 1225745004}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -188,7 +188,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1225745001}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}
 --- !u!4 &1225745005
 Transform:
   m_ObjectHideFlags: 0
@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd80bc18765d448b890762ab1c84cc7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MeshResolution: 64
 --- !u!114 &1225745008
 MonoBehaviour:
   m_ObjectHideFlags: 0
