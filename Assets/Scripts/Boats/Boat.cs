@@ -23,7 +23,7 @@ public class Boat : MonoBehaviour
 	
 	void OnCollisionEnter(Collision collision)
 	{
-		if (collision.transform.tag != "Ocean")
+		if (collision.transform.tag == "Reef")
 		{
 			GameObject.Destroy(this.gameObject);
 		}
