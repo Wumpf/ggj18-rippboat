@@ -1221,8 +1221,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumPlayers: 2
-  StartBoatsPerPlayer: 2
-  ShipPrefab: {fileID: 1366627786195630, guid: a1fd014d032fb7a4585f6dc5d71f5105, type: 2}
+  StartBoatsPerPlayer: 4
+  BoatLogic: {fileID: 1899887406450074, guid: 9c537faab8bbc416680ea0d83b2c0d36, type: 2}
+  BoatONE: {fileID: 1659276176869118, guid: 8df6c228ed8964b388dd666a4b0ddeeb, type: 2}
+  BoatTWO: {fileID: 1633399449865472, guid: fc353266468d9474f9525080c1dd3ee0, type: 2}
+  BoatTHREE: {fileID: 1953627324270140, guid: 47c42e664b6984f009688ed2d471ef37, type: 2}
+  BoatFOUR: {fileID: 1085358368101816, guid: 8bac21909d6894bf1892227ef3e7e7aa, type: 2}
 --- !u!65 &1890712740
 BoxCollider:
   m_ObjectHideFlags: 0

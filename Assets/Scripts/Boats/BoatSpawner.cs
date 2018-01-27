@@ -16,7 +16,11 @@ public class BoatSpawner : MonoBehaviour
 	[Range(1, 10)]
 	public int StartBoatsPerPlayer = 2;
 	
-	public GameObject ShipPrefab;
+	public GameObject BoatLogic;
+	public GameObject BoatONE;
+	public GameObject BoatTWO;
+	public GameObject BoatTHREE;
+	public GameObject BoatFOUR;
 	
 	
 	private WaveManager waveManager;
@@ -52,7 +56,27 @@ public class BoatSpawner : MonoBehaviour
 
 	public void SpawnBoat(Player player, Vector3 position)
 	{			
-		var obj = GameObject.Instantiate(ShipPrefab, position, Quaternion.identity);
+		var obj = GameObject.Instantiate(BoatLogic, position, Quaternion.identity);
 		obj.GetComponent<FloatingBehavior>().WaveManager = waveManager;
+		obj.GetComponent<Boat>().Owner = player;
+
+		switch (player)
+		{
+			case Player.ONE:
+				GameObject.Instantiate(BoatONE, obj.transform);
+				break;
+			case Player.TWO:
+				GameObject.Instantiate(BoatTWO, obj.transform);
+				break;
+			case Player.THREE:
+				GameObject.Instantiate(BoatTHREE, obj.transform);
+				break;
+			case Player.FOUR:
+				GameObject.Instantiate(BoatFOUR, obj.transform);
+				break;
+			default:
+				throw new ArgumentOutOfRangeException(nameof(player), player, null);
+		}
+		
 	}
 }

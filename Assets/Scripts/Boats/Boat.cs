@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 
 public class Boat : MonoBehaviour
 {
-    WaveManager WaveManager;
+    private WaveManager WaveManager;
+	public Player Owner = Player.ONE;
 
     // Use this for initialization
     void Start () {
