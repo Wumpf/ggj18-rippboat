@@ -34,14 +34,11 @@ public class GameObserver : MonoBehaviour
 	    if (Input.GetKeyDown(KeyCode.R))
 	        StartCoroutine(StartGame());
 
-	    var numPlayerOneBoats = playerOneBoats.Count(t=> t.IsDead == false);
-	    var numPlayerTwoBoats = playerTwoBoats.Count(t => t.IsDead == false);
-
-        if (numPlayerOneBoats == 0)
+        if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
 	    {
 	        Debug.Log("Player 2 wins");
 	        StartCoroutine(StartGame());
-        }else if (numPlayerTwoBoats == 0)
+        }else if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
 	    {
 	        Debug.Log("Player 1 wins");
 	        StartCoroutine(StartGame());

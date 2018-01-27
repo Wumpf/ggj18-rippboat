@@ -35,6 +35,19 @@ public class WaveManager : MonoBehaviour {
         {
             Waves.Clear();
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            SpawnNoisyWave(5);
+        }
+    }
+
+    public void SpawnNoisyWave(int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            AddWave(new Vector3(Random.Range(-WaveVisualizer.PlaneSize, WaveVisualizer.PlaneSize),0, Random.Range(-WaveVisualizer.PlaneSize, WaveVisualizer.PlaneSize)));
+        }
     }
 
     public float EvaluateWaveHeight(Vector3 position)

@@ -99,6 +99,6 @@ public class Boat : MonoBehaviour
             yield return null;
         }
         
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }
