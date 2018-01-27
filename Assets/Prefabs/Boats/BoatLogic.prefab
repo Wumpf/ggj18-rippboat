@@ -281,9 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043dfbb2bb9e99645b90bc37b79afa34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveManager: {fileID: 0}
-  GradientScale: 0.1
-  InertiaFactor: 0.96
+  GradientScale: 0.2
+  InertiaFactor: 0.518
 --- !u!114 &114501269269477756
 MonoBehaviour:
   m_ObjectHideFlags: 1

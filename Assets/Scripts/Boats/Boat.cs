@@ -68,7 +68,7 @@ public class Boat : MonoBehaviour
             }
 
             var gradient = WaveManager.EvaluateWaveGradient(transform.position);
-            float bounceFactor = Mathf.Log10(gradient.magnitude + 1.1f) * BounceMagnitude;
+            float bounceFactor = Mathf.Log10(gradient.magnitude + 2.1f) * BounceMagnitude;
 
             _bounceForce += collision.contacts[0].normal * bounceFactor;
         }
@@ -99,6 +99,6 @@ public class Boat : MonoBehaviour
             yield return null;
         }
         
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

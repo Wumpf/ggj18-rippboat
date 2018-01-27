@@ -10,16 +10,30 @@ public class WaveManager : MonoBehaviour {
     [SerializeField]
     WaveSpecs ClickWaveSpecs;
 
+    private WaveSpecs _noiseWaveSpecs;
+
+    public float NoiseCountdownDuration = 3f;
+    private float _noiseCountdown = 4f;
+   
+    [Range(1,15)]
+    public int NoiseWavesNums = 5;
+
     // Use this for initialization
     void Start ()
     {
-		
-	}
+        _noiseWaveSpecs = new WaveSpecs(1.4f, 0.2f, 5, 0.5f, 4);
+    }
 
     // Update is called once per frame
     void Update()
     {
         time = Time.time; // Cache to use in thread.
+        _noiseCountdown += Time.deltaTime;
+        if (_noiseCountdown > NoiseCountdownDuration)
+        {
+            _noiseCountdown %= NoiseCountdownDuration;
+            SpawnCircularNoisyWave(NoiseWavesNums);
+        }
 
         for (int i = 0; i < Waves.Count; ++i)
         {
@@ -34,6 +48,16 @@ public class WaveManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.C))
         {
             Waves.Clear();
+        }
+
+    }
+
+    public void SpawnCircularNoisyWave(int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            var p = Random.Range(0f, 2f * Mathf.PI);
+            AddWave(new Vector3(Mathf.Cos(p), 0, Mathf.Sin(p)) * WaveVisualizer.PlaneSize, _noiseWaveSpecs);
         }
     }
 
