@@ -15,8 +15,8 @@ public class Boat : MonoBehaviour
 
     private Vector3 _bounceForce;
 
-    public float BounceMagnitude = 0.6f;
-    public float BounceFriction = 0.96f;
+    public float BounceMagnitude = 0.5f;
+    public float BounceFriction = 0.99f;
 
     public bool IsDead { get; private set; }
 
@@ -68,7 +68,7 @@ public class Boat : MonoBehaviour
             }
 
             var gradient = WaveManager.EvaluateWaveGradient(transform.position);
-            float bounceFactor = Mathf.Log(gradient.magnitude + 1.1f) * BounceMagnitude;
+            float bounceFactor = Mathf.Log10(gradient.magnitude + 1.1f) * BounceMagnitude;
 
             _bounceForce += collision.contacts[0].normal * bounceFactor;
         }
