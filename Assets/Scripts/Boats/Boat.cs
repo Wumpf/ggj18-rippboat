@@ -83,6 +83,14 @@ public class Boat : MonoBehaviour
             col.enabled = false;
         dead = true;
 
+        WaveManager.AddWave(transform.position, new WaveSpecs()
+        {
+            SpreadSpeed = 3.4f,
+            BaseAmplitude = 0.3f,
+            MaxDuration = 4.0f,
+            SpreadDistance = 3.0f,
+            WaveFrequency = 2.0f
+        } );
         Instantiate(SplashEffect, transform.position, Quaternion.identity);
 
         while (transform.position.y > -5.0f)

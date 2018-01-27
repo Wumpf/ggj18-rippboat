@@ -29,7 +29,7 @@ public class GamepadCursor : MonoBehaviour
             return;
 
         if (Input.GetButtonDown(AxisFromPlayer("Wave", PlayerIndex)))
-            waveManager.AddWave(CursorOnSurface.position, Time.time);
+            waveManager.AddWave(CursorOnSurface.position);
     }
 
     void FixedUpdate()
