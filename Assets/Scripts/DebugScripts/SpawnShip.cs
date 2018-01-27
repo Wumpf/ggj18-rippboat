@@ -25,7 +25,7 @@ public class SpawnShip : MonoBehaviour
 	        
 	            blocked = true;
 	            var obj = GameObject.Instantiate(ShipPrefab);
-	            obj.GetComponent<Boat>().WaveManager = WaveManager.GetComponent<WaveManager>();
+	            obj.GetComponent<FloatingBehavior>().WaveManager = WaveManager.GetComponent<WaveManager>();
 	        }
 	    }
 	    else
