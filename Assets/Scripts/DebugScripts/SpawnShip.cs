@@ -1,38 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 
 public class SpawnShip : MonoBehaviour
 {
-
-    public GameObject ShipPrefab;
     public GameObject WaveManager;
 
-    private bool blocked = false;
+	private BoatSpawner spawner;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+		spawner = FindObjectOfType<BoatSpawner>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-	    if (Input.GetMouseButton(1))
-	    {
-            if (!blocked)
-	        {
-	        
-	            blocked = true;
-	            var obj = GameObject.Instantiate(ShipPrefab);
-	            obj.GetComponent<FloatingBehavior>().WaveManager = WaveManager.GetComponent<WaveManager>();
-	        }
-	    }
-	    else
-	    {
-	        blocked = false;
-
-	    }
+		if (Input.GetMouseButtonDown(1))
+		{
+			spawner.SpawnBoat(Player.ONE, Vector3.zero);
+		}
 	}
 
     void OnGUI()
