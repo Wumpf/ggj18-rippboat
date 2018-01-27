@@ -30,8 +30,8 @@ public class GamepadCursor : MonoBehaviour
 
     void FixedUpdate()
     {
-        var horizontal = Input.GetAxis(AxisFromPlayer("Vertical", PlayerIndex));
-        var vertical = Input.GetAxis(AxisFromPlayer("Horizontal", PlayerIndex));
+        var horizontal = Input.GetAxis(AxisFromPlayer("Horizontal", PlayerIndex));
+        var vertical = Input.GetAxis(AxisFromPlayer("Vertical", PlayerIndex));
 
         CursorOnSurface.position += new Vector3(horizontal * CursorSpeed, 0,vertical * CursorSpeed);
         CursorOnAir.position += new Vector3(horizontal * CursorSpeed, 0, vertical * CursorSpeed);
