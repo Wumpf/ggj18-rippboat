@@ -4,29 +4,38 @@ using UnityEngine;
 
 struct Wave
 {
-    public Vector2 OriginPosition;
+    public Vector3 OriginPosition;
     public float StartTime;
 
-    public Wave(Vector2 originPosition, float startTime)
+    public Wave(Vector3 originPosition, float startTime)
     {
-        OriginPosition = originPosition;
+        OriginPosition = new Vector3(originPosition.x, 0F, originPosition.z);
         StartTime = startTime;
     }
-
-    public float EvaluateWaveHeight(Vector2 position, float time)
+    
+    public float EvaluateWaveHeight(Vector3 position, float time)
     {
-        float d = Vector2.Distance(OriginPosition, position);
+        position = new Vector3(position.x, 0F, position.z);
+        float d = Vector3.Distance(OriginPosition, position);
         float t = time - StartTime;
 
         if (d > t * 2F)
             return 0;
 
-        return t > 0 ? Mathf.Sin(t * 2F - d) / (t * 3F + 4F) * 6F : 0F;
-
+        return Mathf.Sin(t * 2F - d) / (t * 3F + 4F) * 6F; // fabolous function
     }
 
-    public Vector2 EvaluateWaveGradient(Vector2 position, float time)
+    public Vector3 EvaluateWaveGradient(Vector3 position, float time)
     {
-        return Vector2.zero;
+        position = new Vector3(position.x, 0F, position.z);
+        float d = Vector3.Distance(OriginPosition, position);
+        float t = time - StartTime;
+
+        if (d > t * 2F)
+            return Vector3.zero;
+
+        Vector3 direction = position - OriginPosition;
+        direction = new Vector3(direction.x, 0F, direction.z).normalized;
+        return new Vector3(direction.x, -Mathf.Cos(t * 2F - d) / (t * 3F + 4F) * 6F, direction.z); // fabolous function #2
     }
 }

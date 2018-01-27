@@ -63,7 +63,7 @@ public class WaveVisualizer : MonoBehaviour
 		System.Threading.Tasks.Parallel.For(0, vertices.Length, i =>
 		{
 			var oldVertex = vertices[i];
-			float newHeight = waveManager.EvaluateWaveHeight(new Vector2(oldVertex.x, oldVertex.z)); // new hate.
+			float newHeight = waveManager.EvaluateWaveHeight(new Vector3(oldVertex.x, 0F, oldVertex.z)); // new hate.
 			vertices[i] = new Vector3(oldVertex.x, newHeight, oldVertex.z);
 		});
 		mesh.vertices = vertices;

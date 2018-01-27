@@ -18,7 +18,7 @@ public class WaveManager : MonoBehaviour {
 	    time = Time.time; // Cache to use in thread.
 	}
     
-    public float EvaluateWaveHeight(Vector2 position)
+    public float EvaluateWaveHeight(Vector3 position)
     {
         float result = 0F;
         foreach (Wave w in Waves)
@@ -28,9 +28,9 @@ public class WaveManager : MonoBehaviour {
         return result;
     }
 
-    public Vector2 EvaluateWaveGradient(Vector2 position)
+    public Vector3 EvaluateWaveGradient(Vector3 position)
     {
-        Vector2 result = Vector2.zero;
+        Vector3 result = Vector3.zero;
         foreach(Wave w in Waves)
         {
             result += w.EvaluateWaveGradient(position, time);
@@ -38,7 +38,7 @@ public class WaveManager : MonoBehaviour {
         return result;
     }
 
-    public void AddWave(Vector2 originPosition, float startTime)
+    public void AddWave(Vector3 originPosition, float startTime)
     {
         Waves.Add(new Wave(originPosition, startTime));
     }
