@@ -6,6 +6,8 @@ using UnityEngine;
 public class FallingBuoy : MonoBehaviour
 {
     FloatingBehavior _floatingBehavior;
+    [SerializeField]
+    WaveSpecs HitWaveSpecs;
 
     // Use this for initialization
     void Start ()
@@ -30,14 +32,16 @@ public class FallingBuoy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collision");
-
-        WaveManager waveManager = collision.gameObject.GetComponent<WaveManager>();
-        if (waveManager != null)
+        if (this.enabled)
         {
-            Debug.Log("collision with Wavemanager ");
-            EnableFloatingBehaviour();
-            waveManager.AddWave(transform.position);
+            WaveManager waveManager = collision.gameObject.GetComponent<WaveManager>();
+            if (waveManager != null)
+            {
+                EnableFloatingBehaviour();
+                waveManager.AddWave(transform.position, HitWaveSpecs);
+
+                this.enabled = false;
+            }
         }
     }
 }

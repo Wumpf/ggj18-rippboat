@@ -41,7 +41,7 @@ struct Wave
         float d = distanceVector.magnitude;
         float t = time - StartTime;
 
-        if (0F >= t * Specs.SpreadSpeed - d)
+        if (0F >= t * Specs.SpreadSpeed - d || d < float.Epsilon)
         {
             normal = Vector3.up;
             return Vector3.zero;
@@ -60,7 +60,6 @@ struct Wave
         Vector3 zGradient = new Vector3(0F, gradient.z, 1F);
         normal = Vector3.Cross(zGradient, xGradient).normalized;
 
-        
 
         return gradient;
     }

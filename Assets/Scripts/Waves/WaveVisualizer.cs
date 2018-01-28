@@ -75,6 +75,17 @@ public class WaveVisualizer : MonoBehaviour
 		//mesh.RecalculateBounds();
 		mesh.RecalculateNormals();
 		mesh.RecalculateTangents();
-	}
+    }
 
+    public static Vector3 GetRandomPosition()
+    {
+        return Random.value * GetRandomPositionOnBorder();
+    }
+
+    public static Vector3 GetRandomPositionOnBorder()
+    {
+        float rnd = Random.Range(0F, 2F * Mathf.PI);
+        Vector3 v = new Vector3(Mathf.Cos(rnd), 0F, Mathf.Sin(rnd));
+        return PlaneSize * v;
+    }
 }
