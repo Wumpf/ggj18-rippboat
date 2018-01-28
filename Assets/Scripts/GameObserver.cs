@@ -189,7 +189,7 @@ public class GameObserver : MonoBehaviour
         {
             FallingObstacle newObstacle = Instantiate(FallingObstacleTemplate);
             Vector3 rndPosition = posGen.Generate();
-            newObstacle.transform.position = new Vector3(rndPosition.x, 5F, rndPosition.z);
+            newObstacle.transform.position = new Vector3(rndPosition.x, 0.5F + 5F * Random.value, rndPosition.z);
         }
 
         FallingObstacle newRuberDuck = Instantiate(RubberDuck);
