@@ -23,7 +23,7 @@ public class WaveManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        _noiseWaveSpecs = new WaveSpecs(1.4f, 0.2f, 5, 0.5f, 4);
+        _noiseWaveSpecs = new WaveSpecs(1.4f, 0.5f, 5, 0.5f, 4);
     }
 
     // Update is called once per frame
@@ -51,6 +51,9 @@ public class WaveManager : MonoBehaviour {
         {
             Waves.Clear();
         }
+
+        if(Input.GetKeyDown(KeyCode.U))
+            SpawnCircularNoisyWave(NoiseWavesNums);
 
     }
 

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(FloatingBehavior)), RequireComponent(typeof(Buoy)), RequireComponent(typeof(Rigidbody))]
-public class FallingBuoy : MonoBehaviour
+[RequireComponent(typeof(FloatingBehavior)), RequireComponent(typeof(Rigidbody))]
+public class FallingObstacle : MonoBehaviour
 {
     FloatingBehavior _floatingBehavior;
     [SerializeField]

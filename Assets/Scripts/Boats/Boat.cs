@@ -85,6 +85,13 @@ public class Boat : MonoBehaviour
         }
     }
 
+    public IEnumerator InvulnerableCountdown(float time)
+    {
+        StopBouncing = true;
+        yield return new WaitForSeconds(time);
+        StopBouncing = false;
+    }
+
     IEnumerator Sink()
     {
         // make this guy unusable :)

@@ -55,7 +55,9 @@ public class BoatSpawner : MonoBehaviour
 					UnityEngine.Random.Range(min.z, max.z));
 				var boat = SpawnBoat(player, pos);
 
-			    boat.transform.parent = PlayerBoatParents[(int)player].transform;
+			    StartCoroutine(boat.GetComponent<Boat>().InvulnerableCountdown(2));
+
+                boat.transform.parent = PlayerBoatParents[(int)player].transform;
 			}
 
 		}

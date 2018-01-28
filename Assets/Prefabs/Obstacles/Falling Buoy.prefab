@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e5a974eb3becc4ea9f5596e4188fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MotionRange: 0
+  MotionRange: 2
   MovementScale: 0.02
 --- !u!136 &136088738974671956
 CapsuleCollider:

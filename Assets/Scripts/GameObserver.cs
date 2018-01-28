@@ -20,7 +20,8 @@ public class GameObserver : MonoBehaviour
     private WaveVisualizer _waveVisualizer;
     public AnimationCurve _drainWaterAnimation;
 
-    public FallingBuoy FallingBuoyTemplate;
+    public FallingObstacle FallingObstacleTemplate;
+    public FallingObstacle RubberDuck;
 
     bool isIngame;
 
@@ -131,10 +132,14 @@ public class GameObserver : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            FallingBuoy newBuoy = Instantiate(FallingBuoyTemplate);
+            FallingObstacle newObstacle = Instantiate(FallingObstacleTemplate);
             Vector3 rndPosition = WaveVisualizer.GetRandomPosition() * 0.7F;
-            newBuoy.transform.position = new Vector3(rndPosition.x, 5F, rndPosition.z);
+            newObstacle.transform.position = new Vector3(rndPosition.x, 5F, rndPosition.z);
         }
+
+        FallingObstacle newRuberDuck = Instantiate(RubberDuck);
+        Vector3 nerndPosition = WaveVisualizer.GetRandomPosition() * 0.7F;
+        newRuberDuck.transform.position = new Vector3(nerndPosition.x, 5F, nerndPosition.z);
 
         foreach (var playerCursor in Cursor)
             playerCursor.Locked = true;
