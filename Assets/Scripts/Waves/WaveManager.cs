@@ -7,6 +7,8 @@ public class WaveManager : MonoBehaviour {
     List<Wave> Waves = new List<Wave>();
     private float time = 0.0f;
 
+    public int WaveCount { get { return Waves.Count; } }
+
     [SerializeField]
     WaveSpecs ClickWaveSpecs;
 

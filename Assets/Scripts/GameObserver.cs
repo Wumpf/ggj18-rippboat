@@ -20,6 +20,8 @@ public class GameObserver : MonoBehaviour
     private WaveVisualizer _waveVisualizer;
     public AnimationCurve _drainWaterAnimation;
 
+    bool isIngame;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -29,33 +31,48 @@ public class GameObserver : MonoBehaviour
 
         Countdown.text = "";
 	    StartCoroutine(StartGame(2));
+
+        isIngame = false;
     }
 	
 	// Update is called once per frame
 	void Update ()
 	{
-	    if (Input.GetKeyDown(KeyCode.R))
-	        StartCoroutine(StartGame(2));
+        if (isIngame)
+        {
+            float waterDrainAnimationDuration = 2F;
 
-        if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
-	    {
-	        Debug.Log("Player 2 wins");
-	        //StartCoroutine(StartGame());
-	        //StartCoroutine(DrainWater(2));
-	    }else if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
-	    {
-	        Debug.Log("Player 1 wins");
-            //StartCoroutine(StartGame());
-	        //StartCoroutine(DrainWater(2));
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Debug.Log("START GAME, because KeyInput 'Restart'");
+                StartCoroutine(StartGame(waterDrainAnimationDuration));
+            }
+
+            if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
+            {
+                Debug.Log("START GAME, because Player 1 sucks");
+                WinnerIconDisplayer.DisplayWinnerIcon(Assets.Scripts.Player.TWO);
+                StartCoroutine(DrainWater(waterDrainAnimationDuration));
+            }
+            else if (_boatSpawner.PlayerBoatParents[1].transform.childCount == 0)
+            {
+                Debug.Log("START GAME, because Player 2 sucks");
+                WinnerIconDisplayer.DisplayWinnerIcon(Assets.Scripts.Player.ONE);
+                StartCoroutine(DrainWater(waterDrainAnimationDuration));
+            }
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                Debug.Log("START GAME, because KeyInput 'Drain'");
+                StartCoroutine(DrainWater(waterDrainAnimationDuration));
+            }
         }
-
-	    if (Input.GetKeyDown(KeyCode.C))
-	        StartCoroutine(DrainWater(2));
-
 	}
 
-    IEnumerator DrainWater(float time)
+    IEnumerator DrainWater(float waterAnimationTime)
     {
+        isIngame = false;
+
         float currentTime = 0;
 
         var floatingObjects = FindObjectsOfType<FloatingBehavior>();
@@ -74,14 +91,17 @@ public class GameObserver : MonoBehaviour
         }
 
 
-        while (currentTime < time)
+        while (currentTime < waterAnimationTime)
         {
             currentTime += Time.deltaTime;
-            _waveVisualizer.transform.position = new Vector3(_waveVisualizer.transform.position.x, -_drainWaterAnimation.Evaluate(currentTime/time)* 6.3f, _waveVisualizer.transform.position.z);
+            _waveVisualizer.transform.position = new Vector3(_waveVisualizer.transform.position.x, -_drainWaterAnimation.Evaluate(currentTime/waterAnimationTime)* 6.8f, _waveVisualizer.transform.position.z);
             yield return null;
 
         }
 
+        yield return new WaitForSeconds(1.537F);
+
+        StartCoroutine(StartGame(waterAnimationTime));
     }
 
     public void KillFloatingObjects()
@@ -94,16 +114,17 @@ public class GameObserver : MonoBehaviour
 
     }
 
-    IEnumerator StartGame(float time)
+    IEnumerator StartGame(float waterAnimationTime)
     {
+        isIngame = false;
 
         KillFloatingObjects();
         float currentTime = 0;
 
-        while (currentTime < time)
+        while (currentTime < waterAnimationTime)
         {
             currentTime += Time.deltaTime;
-            _waveVisualizer.transform.position = new Vector3(_waveVisualizer.transform.position.x, -(_drainWaterAnimation.Evaluate(1- (currentTime / time)) * 6.3f), _waveVisualizer.transform.position.z);
+            _waveVisualizer.transform.position = new Vector3(_waveVisualizer.transform.position.x, -(_drainWaterAnimation.Evaluate(1- (currentTime / waterAnimationTime)) * 6.8f), _waveVisualizer.transform.position.z);
             yield return null;
 
         }
@@ -113,7 +134,10 @@ public class GameObserver : MonoBehaviour
         foreach (var playerCursor in Cursor)
             playerCursor.Locked = true;
 
-        WinnerIconDisplayer.ResetWinnerIcon();
+        if (WinnerIconDisplayer != null)
+        {
+            WinnerIconDisplayer.ResetWinnerIcon();
+        }
 
         for (int i = CountdownDuration; i >0 ; i--)
         {
@@ -125,9 +149,10 @@ public class GameObserver : MonoBehaviour
         foreach (var playerCursor in Cursor)
             playerCursor.Locked = false;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1F);
 
         Countdown.text = "";
 
+        isIngame = true;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FloatingBehavior))]
 public class Buoy : MonoBehaviour
 {
 
@@ -9,12 +10,11 @@ public class Buoy : MonoBehaviour
     public float MovementScale = 0.02f;
     private Vector3 _startPosition;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
 	{
 	    _startPosition = this.transform.position;
-
-	}
+    }
 
     void FixedUpdate()
     {

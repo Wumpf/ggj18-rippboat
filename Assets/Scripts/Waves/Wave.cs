@@ -60,6 +60,8 @@ struct Wave
         Vector3 zGradient = new Vector3(0F, gradient.z, 1F);
         normal = Vector3.Cross(zGradient, xGradient).normalized;
 
+        
+
         return gradient;
     }
 }
