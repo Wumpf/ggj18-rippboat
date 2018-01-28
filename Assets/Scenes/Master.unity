@@ -459,12 +459,37 @@ Prefab:
     - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
         type: 2}
       propertyPath: ClickWaveSpecs.BaseAmplitude
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
         type: 2}
       propertyPath: ClickWaveSpecs.SpreadDistance
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: ClickLowWaveSpecs.SpreadSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: ClickLowWaveSpecs.BaseAmplitude
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: ClickLowWaveSpecs.SpreadDistance
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: ClickLowWaveSpecs.WaveFrequency
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: ClickLowWaveSpecs.MaxDuration
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a37f91c200491d429cfe979e4b251c9, type: 2}
@@ -961,6 +986,11 @@ Prefab:
         type: 2}
       propertyPath: m_Size.y
       value: 6.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 114240312241884616, guid: cb8864cfc1a56b1478e829d23dfac7b3,
+        type: 2}
+      propertyPath: StartBoatsPerPlayer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb8864cfc1a56b1478e829d23dfac7b3, type: 2}

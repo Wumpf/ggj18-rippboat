@@ -22,7 +22,7 @@ public class GamepadCursor : MonoBehaviour
     private float timeSinceLastWave = WaveCoolDownTime;
 
     public float MaxCursorDistanceRange = 11.337f;
-
+    
 
     void Start()
     {
@@ -38,6 +38,11 @@ public class GamepadCursor : MonoBehaviour
         if (timeSinceLastWave > WaveCoolDownTime && Input.GetButtonDown(AxisFromPlayer("Wave", PlayerIndex)))
         {
             waveManager.AddWave(CursorOnSurface.position);
+            timeSinceLastWave = 0.0f;
+        }
+        if (timeSinceLastWave > WaveCoolDownTime && Input.GetButtonDown(AxisFromPlayer("WaveLow", PlayerIndex)))
+        {
+            waveManager.AddWaveLow(CursorOnSurface.position);
             timeSinceLastWave = 0.0f;
         }
 

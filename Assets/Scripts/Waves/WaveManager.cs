@@ -12,6 +12,9 @@ public class WaveManager : MonoBehaviour {
     [SerializeField]
     WaveSpecs ClickWaveSpecs;
 
+    [SerializeField]
+    WaveSpecs ClickLowWaveSpecs;
+
     private WaveSpecs _noiseWaveSpecs;
 
     public float NoiseCountdownDuration = 3f;
@@ -108,7 +111,12 @@ public class WaveManager : MonoBehaviour {
     {
         AddWave(originPosition, ClickWaveSpecs);
     }
-    
+
+    public void AddWaveLow(Vector3 originPosition)
+    {
+        AddWave(originPosition, ClickLowWaveSpecs);
+    }
+
     public void AddWave(Vector3 originPosition, WaveSpecs customSpecs)
     {
         Waves.Add(new Wave(originPosition, Time.time, customSpecs));

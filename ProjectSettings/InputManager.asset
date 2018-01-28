@@ -294,6 +294,22 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
+    m_Name: WaveLowOne
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 1 button 1
+    altNegativeButton: 
+    altPositiveButton: joystick 1 button 17
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 1
+    joyNum: 1
+  - serializedVersion: 3
     m_Name: WaveTwo
     descriptiveName: 
     descriptiveNegativeName: 
@@ -301,6 +317,22 @@ InputManager:
     positiveButton: joystick 2 button 0
     altNegativeButton: 
     altPositiveButton: joystick 2 button 16
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 1
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: WaveLowTwo
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 2 button 1
+    altNegativeButton: 
+    altPositiveButton: joystick 2 button 17
     gravity: 0
     dead: 0.19
     sensitivity: 1
@@ -326,6 +358,22 @@ InputManager:
     axis: 1
     joyNum: 3
   - serializedVersion: 3
+    m_Name: WaveLowThree
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 3 button 1
+    altNegativeButton: 
+    altPositiveButton: joystick 3 button 17
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 1
+    joyNum: 3
+  - serializedVersion: 3
     m_Name: WaveFour
     descriptiveName: 
     descriptiveNegativeName: 
@@ -333,6 +381,22 @@ InputManager:
     positiveButton: joystick 4 button 0
     altNegativeButton: 
     altPositiveButton: joystick 4 button 16
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 1
+    joyNum: 4
+  - serializedVersion: 3
+    m_Name: WaveLowFour
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick 4 button 1
+    altNegativeButton: 
+    altPositiveButton: joystick 4 button 17
     gravity: 0
     dead: 0.19
     sensitivity: 1
