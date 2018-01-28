@@ -20,6 +20,8 @@ public class GameObserver : MonoBehaviour
     private WaveVisualizer _waveVisualizer;
     public AnimationCurve _drainWaterAnimation;
 
+    public FallingBuoy FallingBuoyTemplate;
+
     bool isIngame;
 
 	// Use this for initialization
@@ -44,26 +46,22 @@ public class GameObserver : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Debug.Log("START GAME, because KeyInput 'Restart'");
                 StartCoroutine(StartGame(waterDrainAnimationDuration));
             }
 
             if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
             {
-                Debug.Log("START GAME, because Player 1 sucks");
                 WinnerIconDisplayer.DisplayWinnerIcon(Assets.Scripts.Player.TWO);
                 StartCoroutine(DrainWater(waterDrainAnimationDuration));
             }
             else if (_boatSpawner.PlayerBoatParents[1].transform.childCount == 0)
             {
-                Debug.Log("START GAME, because Player 2 sucks");
                 WinnerIconDisplayer.DisplayWinnerIcon(Assets.Scripts.Player.ONE);
                 StartCoroutine(DrainWater(waterDrainAnimationDuration));
             }
 
             if (Input.GetKeyDown(KeyCode.C))
             {
-                Debug.Log("START GAME, because KeyInput 'Drain'");
                 StartCoroutine(DrainWater(waterDrainAnimationDuration));
             }
         }
@@ -130,6 +128,13 @@ public class GameObserver : MonoBehaviour
         }
 
         _boatSpawner.StartupSpawn();
+
+        for (int i = 0; i < 5; i++)
+        {
+            FallingBuoy newBuoy = Instantiate(FallingBuoyTemplate);
+            Vector3 rndPosition = WaveVisualizer.GetRandomPosition() * 0.7F;
+            newBuoy.transform.position = new Vector3(rndPosition.x, 5F, rndPosition.z);
+        }
 
         foreach (var playerCursor in Cursor)
             playerCursor.Locked = true;

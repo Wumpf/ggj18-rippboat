@@ -806,6 +806,12 @@ Prefab:
       propertyPath: WinnerIconDisplayer
       value: 
       objectReference: {fileID: 1428302885}
+    - target: {fileID: 114993170468423620, guid: cb8864cfc1a56b1478e829d23dfac7b3,
+        type: 2}
+      propertyPath: FallingBuoyTemplate
+      value: 
+      objectReference: {fileID: 114027089148601810, guid: 386c706e3c992b645971f55c32decbd0,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb8864cfc1a56b1478e829d23dfac7b3, type: 2}
   m_IsPrefabParent: 0

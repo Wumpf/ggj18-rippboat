@@ -402,6 +402,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e94c98da2c32a41935f2ca5ce0716b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitWaveSpecs:
+    SpreadSpeed: 3
+    BaseAmplitude: -0.8
+    SpreadDistance: 1.42
+    WaveFrequency: 2.6
+    MaxDuration: 2
 --- !u!114 &114871540038764274
 MonoBehaviour:
   m_ObjectHideFlags: 1

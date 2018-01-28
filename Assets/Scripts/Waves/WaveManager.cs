@@ -58,8 +58,7 @@ public class WaveManager : MonoBehaviour {
     {
         for (int i = 0; i < number; i++)
         {
-            var p = Random.Range(0f, 2f * Mathf.PI);
-            AddWave(new Vector3(Mathf.Cos(p), 0, Mathf.Sin(p)) * WaveVisualizer.PlaneSize, _noiseWaveSpecs);
+            AddWave(WaveVisualizer.GetRandomPositionOnBorder(), _noiseWaveSpecs);
         }
     }
 
@@ -86,6 +85,7 @@ public class WaveManager : MonoBehaviour {
         {
             gradient += w.EvaluateWaveGradient(position, time);
         }
+
         normal = Vector3.up;
         
         Vector3 xGradient = new Vector3(1F, gradient.x, 0F);
