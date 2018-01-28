@@ -9,7 +9,6 @@ public class ClickListener : MonoBehaviour
 
     Collider WaveCollider;
 
-
     // Use this for initialization
     void Start()
     {
@@ -23,7 +22,7 @@ public class ClickListener : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
-        if(Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo) && hitInfo.collider == WaveCollider)
+        if(Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo))
         {
             WaveManager.AddWave(hitInfo.point);
         }

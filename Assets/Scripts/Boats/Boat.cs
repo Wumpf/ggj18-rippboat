@@ -21,6 +21,9 @@ public class Boat : MonoBehaviour
     public bool StopBouncing { get; set; } = false;
 
     public bool IsDead { get; private set; }
+    
+    [SerializeField]
+    WaveSpecs DyingRippleWaveSpecs;
 
     // Use this for initialization
     void Start()
@@ -91,14 +94,7 @@ public class Boat : MonoBehaviour
             col.enabled = false;
         IsDead = true;
 
-        WaveManager.AddWave(transform.position, new WaveSpecs()
-        {
-            SpreadSpeed = 3.4f,
-            BaseAmplitude = 0.3f,
-            MaxDuration = 4.0f,
-            SpreadDistance = 3.0f,
-            WaveFrequency = 2.0f
-        } );
+        WaveManager.AddWave(transform.position, DyingRippleWaveSpecs);
         Instantiate(SplashEffect, transform.position, Quaternion.identity);
 
         while (transform.position.y > -5.0f)
