@@ -18,6 +18,8 @@ public class Boat : MonoBehaviour
     public float BounceMagnitude = 0.5f;
     public float BounceFriction = 0.99f;
 
+    public bool StopBouncing { get; set; } = false;
+
     public bool IsDead { get; private set; }
 
     // Use this for initialization
@@ -31,7 +33,7 @@ public class Boat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsDead)
+        if (IsDead || StopBouncing)
             return;
         
         //transform.position = 0.
@@ -52,12 +54,18 @@ public class Boat : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (StopBouncing)
+            return;
+
         this.transform.position += _bounceForce;
         _bounceForce *= BounceFriction;
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        if (StopBouncing)
+            return;
+
         if (collision.transform.tag == "Reef" || collision.gameObject.GetComponent<Boat>())
         {
             _health.AddDamage(1);

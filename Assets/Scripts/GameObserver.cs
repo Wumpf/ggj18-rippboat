@@ -15,59 +15,98 @@ public class GameObserver : MonoBehaviour
     public GamepadCursor[] Cursor;
 
     private BoatSpawner _boatSpawner;
-
-    private Boat[] playerOneBoats;
-    private Boat[] playerTwoBoats;
+    private WaveVisualizer _waveVisualizer;
+    public AnimationCurve _drainWaterAnimation;
 
 	// Use this for initialization
 	void Start ()
 	{
 	    _boatSpawner = GetComponent<BoatSpawner>();
+	    _waveVisualizer = FindObjectOfType<WaveVisualizer>();
 
-	    Countdown.text = "";
-	    StartCoroutine(StartGame());
+
+        Countdown.text = "";
+	    StartCoroutine(StartGame(2));
     }
 	
 	// Update is called once per frame
 	void Update ()
 	{
 	    if (Input.GetKeyDown(KeyCode.R))
-	        StartCoroutine(StartGame());
+	        StartCoroutine(StartGame(2));
 
         if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
 	    {
 	        Debug.Log("Player 2 wins");
-	        StartCoroutine(StartGame());
-        }else if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
+	        //StartCoroutine(StartGame());
+	        //StartCoroutine(DrainWater(2));
+	    }else if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
 	    {
 	        Debug.Log("Player 1 wins");
-	        StartCoroutine(StartGame());
+            //StartCoroutine(StartGame());
+	        //StartCoroutine(DrainWater(2));
+        }
+
+	    if (Input.GetKeyDown(KeyCode.C))
+	        StartCoroutine(DrainWater(2));
+
+	}
+
+    IEnumerator DrainWater(float time)
+    {
+        float currentTime = 0;
+
+        var floatingObjects = FindObjectsOfType<FloatingBehavior>();
+
+        foreach (var obj in floatingObjects)
+        {
+            obj.StopFloating = true;
+            var boat = obj.GetComponent<Boat>();
+
+            if (boat != null)
+                boat.StopBouncing = true;
+
+            var ridgid = obj.GetComponent<Rigidbody>();
+            ridgid.useGravity = true;
+            ridgid.constraints = RigidbodyConstraints.None;
+        }
+
+
+        while (currentTime < time)
+        {
+            currentTime += Time.deltaTime;
+            _waveVisualizer.transform.position = new Vector3(_waveVisualizer.transform.position.x, -_drainWaterAnimation.Evaluate(currentTime/time)* 6.3f, _waveVisualizer.transform.position.z);
+            yield return null;
+
         }
 
     }
 
-    public void KillOldBoats()
+    public void KillFloatingObjects()
     {
-        foreach (Transform child in _boatSpawner.PlayerBoatParents[0].transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
-
-        foreach (Transform child in _boatSpawner.PlayerBoatParents[1].transform)
+        var flObj = FindObjectsOfType<FloatingBehavior>();
+        foreach (var child in flObj)
         {
             GameObject.Destroy(child.gameObject);
         }
 
     }
 
-    IEnumerator StartGame()
+    IEnumerator StartGame(float time)
     {
 
-        KillOldBoats();
+        KillFloatingObjects();
+        float currentTime = 0;
+
+        while (currentTime < time)
+        {
+            currentTime += Time.deltaTime;
+            _waveVisualizer.transform.position = new Vector3(_waveVisualizer.transform.position.x, -(_drainWaterAnimation.Evaluate(1- (currentTime / time)) * 6.3f), _waveVisualizer.transform.position.z);
+            yield return null;
+
+        }
+
         _boatSpawner.StartupSpawn();
-
-        playerOneBoats = _boatSpawner.PlayerBoatParents[0].GetComponentsInChildren<Boat>();
-        playerTwoBoats = _boatSpawner.PlayerBoatParents[1].GetComponentsInChildren<Boat>();
 
         foreach (var playerCursor in Cursor)
             playerCursor.Locked = true;

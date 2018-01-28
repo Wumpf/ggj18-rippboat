@@ -12,6 +12,9 @@ public class FloatingBehavior : MonoBehaviour {
     [Range(0F, 1F)]
     public float InertiaFactor = 0.2f;
 
+
+    public bool StopFloating { get; set; } = false;
+
     private void Start()
     {
         WaveManager = FindObjectOfType<WaveManager>();
@@ -19,6 +22,9 @@ public class FloatingBehavior : MonoBehaviour {
 
     void FixedUpdate()
     {
+        if (StopFloating)
+            return;
+
         var currentPosition = transform.position;
 
         // get gradient

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ocean
   - Reef
+  - WaterDrop
   layers:
   - Default
   - TransparentFX
