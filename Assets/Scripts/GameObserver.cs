@@ -14,6 +14,8 @@ public class GameObserver : MonoBehaviour
 
     public GamepadCursor[] Cursor;
 
+    public WinnerIconDisplayer WinnerIconDisplayer;
+
     private BoatSpawner _boatSpawner;
 
     private Boat[] playerOneBoats;
@@ -71,6 +73,8 @@ public class GameObserver : MonoBehaviour
 
         foreach (var playerCursor in Cursor)
             playerCursor.Locked = true;
+
+        WinnerIconDisplayer.ResetWinnerIcon();
 
         for (int i = CountdownDuration; i >0 ; i--)
         {
