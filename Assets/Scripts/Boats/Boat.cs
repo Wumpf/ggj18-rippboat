@@ -15,8 +15,8 @@ public class Boat : MonoBehaviour
 
     private Vector3 _bounceForce;
 
-    public float BounceMagnitude = 0.5f;
-    public float BounceFriction = 0.99f;
+    public float BounceMagnitude = 0.3f;
+    public float BounceFriction = 0.993f;
 
     public bool StopBouncing { get; set; } = false;
 
