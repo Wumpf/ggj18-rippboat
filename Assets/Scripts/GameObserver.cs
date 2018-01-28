@@ -157,6 +157,13 @@ public class GameObserver : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
+        var splashObj = (FindObjectsOfType<ParticleSystem>()).ToList().FindAll(t => t.transform.parent.tag == "Splash");
+
+        foreach (var child in splashObj)
+        {
+            GameObject.Destroy(child.transform.parent.gameObject);
+        }
+
 
     }
 

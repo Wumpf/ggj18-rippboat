@@ -633,7 +633,7 @@ PlayerSettings:
   cloudServicesEnabled:
     UNet: 1
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: d33b1d8b-277d-4e33-8ce8-1e2c928f946e
   projectName: RippleBoat
   organizationId: gnaarf

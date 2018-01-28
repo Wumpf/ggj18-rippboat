@@ -20,7 +20,10 @@ public class GamepadCursor : MonoBehaviour
 
     private const float WaveCoolDownTime = 1.0f;
     private float timeSinceLastWave = WaveCoolDownTime;
-    
+
+    public float MaxCursorDistanceRange = 11.337f;
+
+
     void Start()
     {
         waveManager = FindObjectOfType<WaveManager>();
@@ -47,11 +50,20 @@ public class GamepadCursor : MonoBehaviour
         var horizontal = Input.GetAxis(AxisFromPlayer("Horizontal", PlayerIndex));
         var vertical = Input.GetAxis(AxisFromPlayer("Vertical", PlayerIndex));
 
-        CursorOnSurface.position += new Vector3(horizontal * CursorSpeed, 0,vertical * CursorSpeed);
-        CursorOnSurface.position = new Vector3(CursorOnSurface.position.x, waveManager.EvaluateWaveHeight(CursorOnSurface.position), CursorOnSurface.position.z);
+        var targetCursorOnSurface = CursorOnSurface.position + new Vector3(horizontal * CursorSpeed, 0,vertical * CursorSpeed);
+        targetCursorOnSurface = new Vector3(targetCursorOnSurface.x, waveManager.EvaluateWaveHeight(targetCursorOnSurface), targetCursorOnSurface.z);
         
-        CursorOnAir.position += new Vector3(horizontal * CursorSpeed, 0, vertical * CursorSpeed);
-        CursorOnAir.rotation = Quaternion.LookRotation(-(Camera.main.transform.position - CursorOnAir.position).normalized, Vector3.up);
+        var targetCursorOnAir = CursorOnAir.position + new Vector3(horizontal * CursorSpeed, 0, vertical * CursorSpeed);
+        var targetCursorOnAirRotation = Quaternion.LookRotation(-(Camera.main.transform.position - CursorOnAir.position).normalized, Vector3.up);
+
+        if (Vector3.Distance(targetCursorOnAir, waveManager.transform.position) < MaxCursorDistanceRange)
+        {
+            CursorOnSurface.position = targetCursorOnSurface;
+
+            CursorOnAir.position = targetCursorOnAir;
+            CursorOnAir.rotation = targetCursorOnAirRotation;
+
+        }
     }
 
 

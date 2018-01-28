@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45073056, g: 0.498841, b: 0.5650075, a: 1}
+  m_IndirectSpecularColor: {r: 0.4507302, g: 0.49884033, b: 0.5650075, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -456,6 +456,16 @@ Prefab:
       propertyPath: NoiseWavesNums
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: ClickWaveSpecs.BaseAmplitude
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: ClickWaveSpecs.SpreadDistance
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a37f91c200491d429cfe979e4b251c9, type: 2}
   m_IsPrefabParent: 0
@@ -859,7 +869,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4134840792655228, guid: cb8864cfc1a56b1478e829d23dfac7b3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 4134840792655228, guid: cb8864cfc1a56b1478e829d23dfac7b3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1798,7 +1808,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2087559013}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fca407fbb07acf643a0d627cb946c8af, type: 3}
   m_Name: 
