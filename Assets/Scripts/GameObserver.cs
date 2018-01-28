@@ -135,6 +135,7 @@ public class GameObserver : MonoBehaviour
             ridgid.constraints = RigidbodyConstraints.None;
         }
 
+        FindObjectOfType<WaveManager>().Clear();
 
         while (currentTime < waterAnimationTime)
         {

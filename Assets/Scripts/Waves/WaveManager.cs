@@ -49,12 +49,17 @@ public class WaveManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Waves.Clear();
+            Clear();
         }
 
         if(Input.GetKeyDown(KeyCode.U))
             SpawnCircularNoisyWave(NoiseWavesNums);
 
+    }
+
+    public void Clear()
+    {
+        Waves.Clear();
     }
 
     public void SpawnCircularNoisyWave(int number)
