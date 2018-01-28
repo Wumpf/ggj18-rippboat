@@ -37,12 +37,12 @@ public class GameObserver : MonoBehaviour
 
         if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
 	    {
-	        Debug.Log("Player 2 wins");
+	        //Debug.Log("Player 2 wins");
 	        //StartCoroutine(StartGame());
 	        //StartCoroutine(DrainWater(2));
 	    }else if (_boatSpawner.PlayerBoatParents[0].transform.childCount == 0)
 	    {
-	        Debug.Log("Player 1 wins");
+	        //Debug.Log("Player 1 wins");
             //StartCoroutine(StartGame());
 	        //StartCoroutine(DrainWater(2));
         }

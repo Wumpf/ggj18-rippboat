@@ -117,6 +117,8 @@ MonoBehaviour:
     SpreadDistance: 13
     WaveFrequency: 1.1
     MaxDuration: 9
+  NoiseCountdownDuration: 0.2
+  NoiseWavesNums: 1
 --- !u!114 &114176958896859294
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -77,11 +77,4 @@ public class WaveVisualizer : MonoBehaviour
 		mesh.RecalculateTangents();
 	}
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.tag == "WaterDrop")
-        {
-            Debug.Log("Gggs");
-        }
-    }
 }
