@@ -299,6 +299,12 @@ MonoBehaviour:
     type: 2}
   BounceMagnitude: 0.5
   BounceFriction: 0.94
+  DyingRippleWaveSpecs:
+    SpreadSpeed: 4.5
+    BaseAmplitude: -0.8
+    SpreadDistance: 2
+    WaveFrequency: 4
+    MaxDuration: 1.5
 --- !u!114 &114673576775653128
 MonoBehaviour:
   m_ObjectHideFlags: 1

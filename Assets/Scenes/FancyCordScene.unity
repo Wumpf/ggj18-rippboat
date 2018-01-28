@@ -348,27 +348,52 @@ Prefab:
     - target: {fileID: 114176958896859294, guid: 7a37f91c200491d429cfe979e4b251c9,
         type: 2}
       propertyPath: DyingRipple.SpreadSpeed
-      value: 0.21
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 114176958896859294, guid: 7a37f91c200491d429cfe979e4b251c9,
         type: 2}
       propertyPath: DyingRipple.BaseAmplitude
-      value: 0.36
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 114176958896859294, guid: 7a37f91c200491d429cfe979e4b251c9,
         type: 2}
       propertyPath: DyingRipple.SpreadDistance
-      value: 0.33
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114176958896859294, guid: 7a37f91c200491d429cfe979e4b251c9,
         type: 2}
       propertyPath: DyingRipple.WaveFrequency
-      value: 1.07
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114176958896859294, guid: 7a37f91c200491d429cfe979e4b251c9,
         type: 2}
       propertyPath: DyingRipple.MaxDuration
-      value: 1.09
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: DyingRippleWaveSpecs.SpreadSpeed
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: DyingRippleWaveSpecs.BaseAmplitude
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: DyingRippleWaveSpecs.SpreadDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: DyingRippleWaveSpecs.WaveFrequency
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114062040452401790, guid: 7a37f91c200491d429cfe979e4b251c9,
+        type: 2}
+      propertyPath: DyingRippleWaveSpecs.MaxDuration
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a37f91c200491d429cfe979e4b251c9, type: 2}

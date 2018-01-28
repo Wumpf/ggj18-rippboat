@@ -9,10 +9,6 @@ public class ClickListener : MonoBehaviour
 
     Collider WaveCollider;
 
-
-    [SerializeField]
-    WaveSpecs DyingRipple;
-
     // Use this for initialization
     void Start()
     {
@@ -28,7 +24,7 @@ public class ClickListener : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hitInfo))
         {
-            WaveManager.AddWave(hitInfo.point, DyingRipple);
+            WaveManager.AddWave(hitInfo.point);
         }
     }
 
