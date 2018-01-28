@@ -43,8 +43,8 @@ public class BoatSpawner : MonoBehaviour
 	{
 		Vector3 scaledSize = spawnBox.size;
 		scaledSize.Scale(transform.lossyScale);
-		Vector3 min = spawnBox.center + transform.position + scaledSize * 0.5f;
-		Vector3 max = spawnBox.center + transform.position - scaledSize * 0.5f;
+		Vector3 min = spawnBox.center + transform.position - scaledSize * 0.5f;
+		Vector3 max = spawnBox.center + transform.position + scaledSize * 0.5f;
 		
 		foreach (var player in ((Player[]) Enum.GetValues(typeof(Player))).Take(NumPlayers))
 		{
