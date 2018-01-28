@@ -147,12 +147,17 @@ MonoBehaviour:
   CountdownDuration: 3
   Countdown: {fileID: 0}
   StartMessages:
-  - Go!
+  - Go
   - Boat!
   - Go Go Go!
+  - Set Sail!!!
+  - Ahoy!
+  - Yar Har Har
+  - Sail on!
   Cursor:
   - {fileID: 0}
   - {fileID: 0}
+  WinnerIconDisplayer: {fileID: 0}
   _drainWaterAnimation:
     serializedVersion: 2
     m_Curve:
@@ -171,3 +176,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  FallingObstacleTemplate: {fileID: 0}
+  RubberDuck: {fileID: 0}
