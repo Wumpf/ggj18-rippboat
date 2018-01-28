@@ -25,13 +25,59 @@ public class GameObserver : MonoBehaviour
 
     bool isIngame;
 
+    public class RandomPosGenerator
+    {
+        readonly List<Vector3> generatedPositions = new List<Vector3>();
+        private Vector3 min;
+        private Vector3 max;
+        
+        public RandomPosGenerator(BoxCollider area)
+        {
+            Vector3 scaledSize = area.size;
+            min = area.center - scaledSize * 0.5f;
+            max = area.center + scaledSize * 0.5f;
+        }
+        
+        public void Reset()
+        {
+            generatedPositions.Clear();
+        }
+
+        public Vector3 Generate()
+        {
+            Vector3 pos = Vector3.zero;
+            float lastDist = 0.0f;
+            for (int t = 0; t < 10; ++t) // brute force attempt to find a well spaced position
+            {
+                var newPos = new Vector3(
+                    UnityEngine.Random.Range(min.x, max.x), 0,
+                    UnityEngine.Random.Range(min.z, max.z));
+
+                if (generatedPositions.Count == 0)
+                    break;
+
+                float minDist = generatedPositions.Min(x => (x - newPos).magnitude);
+                if (minDist > lastDist)
+                {
+                    lastDist = minDist;
+                    pos = newPos;
+                }
+            }
+            generatedPositions.Add(pos);
+
+            return pos;
+        }
+    }
+
+    private RandomPosGenerator posGen;
+
 	// Use this for initialization
 	void Start ()
 	{
 	    _boatSpawner = GetComponent<BoatSpawner>();
 	    _waveVisualizer = FindObjectOfType<WaveVisualizer>();
 
-
+	    posGen = new RandomPosGenerator(GetComponent<BoxCollider>());
         Countdown.text = "";
 	    StartCoroutine(StartGame(2));
 
@@ -116,6 +162,7 @@ public class GameObserver : MonoBehaviour
     IEnumerator StartGame(float waterAnimationTime)
     {
         isIngame = false;
+        posGen.Reset();
 
         KillFloatingObjects();
         float currentTime = 0;
@@ -128,17 +175,17 @@ public class GameObserver : MonoBehaviour
 
         }
 
-        _boatSpawner.StartupSpawn();
+        _boatSpawner.StartupSpawn(posGen);
 
         for (int i = 0; i < 5; i++)
         {
             FallingObstacle newObstacle = Instantiate(FallingObstacleTemplate);
-            Vector3 rndPosition = WaveVisualizer.GetRandomPosition() * 0.7F;
+            Vector3 rndPosition = posGen.Generate();
             newObstacle.transform.position = new Vector3(rndPosition.x, 5F, rndPosition.z);
         }
 
         FallingObstacle newRuberDuck = Instantiate(RubberDuck);
-        Vector3 nerndPosition = WaveVisualizer.GetRandomPosition() * 0.7F;
+        Vector3 nerndPosition = posGen.Generate();
         newRuberDuck.transform.position = new Vector3(nerndPosition.x, 5F, nerndPosition.z);
 
         foreach (var playerCursor in Cursor)

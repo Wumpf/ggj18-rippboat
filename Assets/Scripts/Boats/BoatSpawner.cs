@@ -6,9 +6,6 @@ using UnityEngine;
 using System.Linq;
 using Random = UnityEngine.Random;
 
-// The thing that spawns boats on startup.
-// Everybody who wants to spawns boats should use the SpawnBoat func!
-[RequireComponent(typeof(BoxCollider))]
 public class BoatSpawner : MonoBehaviour
 {
 	[Range(2, 4)]
@@ -23,37 +20,24 @@ public class BoatSpawner : MonoBehaviour
 	public GameObject BoatTHREE;
 	public GameObject BoatFOUR;
 	
-	
-	private WaveManager waveManager;
+
 	private BoxCollider spawnBox;
 
 
     public GameObject [] PlayerBoatParents;
 	
-	// Use this for initialization
-	void Start ()
-	{
-		waveManager = FindObjectOfType<WaveManager>();
-		spawnBox = GetComponent<BoxCollider>();
-		
-		//StartupSpawn();
-	}
 
-	public void StartupSpawn()
+	public void StartupSpawn(GameObserver.RandomPosGenerator gen)
 	{
-		Vector3 scaledSize = spawnBox.size;
-		scaledSize.Scale(transform.lossyScale);
-		Vector3 min = spawnBox.center + transform.position - scaledSize * 0.5f;
-		Vector3 max = spawnBox.center + transform.position + scaledSize * 0.5f;
+
+		
+		List<Vector3> boatPositions = new List<Vector3>();
 		
 		foreach (var player in ((Player[]) Enum.GetValues(typeof(Player))).Take(NumPlayers))
 		{
 		    for (int i = 0; i < StartBoatsPerPlayer; ++i)
-			{
-				var pos = new Vector3(
-					UnityEngine.Random.Range(min.x, max.x), 0,
-					UnityEngine.Random.Range(min.z, max.z));
-				var boat = SpawnBoat(player, pos);
+		    {
+			    var boat = SpawnBoat(player, gen.Generate());
 
 			    StartCoroutine(boat.GetComponent<Boat>().InvulnerableCountdown(2));
 

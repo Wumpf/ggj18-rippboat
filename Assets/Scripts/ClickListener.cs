@@ -7,12 +7,9 @@ public class ClickListener : MonoBehaviour
 {
     WaveManager WaveManager;
 
-    Collider WaveCollider;
-
     // Use this for initialization
     void Start()
     {
-        WaveCollider = GetComponent<Collider>();
         WaveManager = GetComponent<WaveManager>();
     }
 
