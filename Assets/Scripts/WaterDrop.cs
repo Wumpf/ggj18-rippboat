@@ -26,13 +26,24 @@ public class WaterDrop : MonoBehaviour
         {
             _waveManager.AddWave(transform.position,DropSpecs);
             Instantiate(SplashEffect, transform.position, Quaternion.identity);
+
             StartCoroutine(WaitDelete());
         }
     }
 
     IEnumerator WaitDelete()
     {
-        yield return new WaitForSeconds(0.5f);
+        float waitDuration = 0.5f;
+        float _runDuration = 0;
+
+        while (_runDuration < waitDuration)
+        {
+            _runDuration += Time.deltaTime;
+            this.transform.localScale *= 0.3f;
+            yield return null;
+
+        }
+
         GameObject.Destroy(this.gameObject);
     }
 }
